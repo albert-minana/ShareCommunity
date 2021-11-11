@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="cat.fib.sharecommunity.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="cat.fib.sharecommunity.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile" />
+
+    <fragment
+        android:id="@+id/nav_programs"
+        android:name="cat.fib.sharecommunity.ui.CercarFiltrarProgramFragment"
+        android:label="@string/text_programs" />
+    <fragment
+        android:id="@+id/nav_predefinedroutine"
+        android:name="cat.fib.sharecommunity.ui.CercarFiltrarRutinaPredefinidaFragment"
+        android:label="@string/text_predefinedroutines" />
+    <fragment
+        android:id="@+id/nav_exercises"
+        android:name="cat.fib.sharecommunity.ui.CercarFiltrarExerciciFragment"
+        android:label="@string/text_exercicis" />
+    <fragment
+        android:id="@+id/nav_classes"
+        android:name="cat.fib.sharecommunity.ui.CercarFiltrarClasseFragment"
+        android:label="@string/text_classes" />
+
+    <fragment
+        android:id="@+id/nav_collections"
+        android:name="cat.fib.sharecommunity.ui.CercarFiltrarCollectionFragment"
+        android:label="@string/Collections" />
+
+</navigation>

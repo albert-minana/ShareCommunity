@@ -1,0 +1,136 @@
+<resources>
+    <string name="prefs_file">cat.fib.fithaus.PREFERENCE_FILE_KEY</string>
+
+    <string name="app_name">FitHaus</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Inici</string>
+    <string name="DadesPersonals">Usuari</string>
+    <string name="Nom">Nom</string>
+    <string name="Usuari">Usuari</string>
+    <string name="Contrasenya">Contrasenya</string>
+    <string name="Sexe">Sexe</string>
+    <string name="DataNaixement">Data naixement</string>
+    <string name="Logo">Logo</string>
+    <string name="SegüentPantalla">Següent pantalla</string>
+    <string name="DadesEsportives">Esport</string>
+    <string name="NumRutines">Rutines d\'entrenament realitzades</string>
+    <string name="Assoliments">Assoliments</string>
+    <string name="Punts">Punts</string>
+    <string name="Nivell">Nivell</string>
+    <string name="Objectiu">Objectius d\'interès</string>
+    <string name="CategoriesInterès">Categories d\'interès</string>
+    <string name="Anterior_Pantalla">Anterior pantalla</string>
+    <string name="TancarSessio">Tancar sessió</string>
+    <string name="DadesFísiques">Físic</string>
+    <string name="Pes">Pes</string>
+    <string name="Alçada">Alçada</string>
+    <string name="IMC">IMC</string>
+    <string name="IGC">IGC</string>
+    <string name="Històric">Històric</string>
+    <string name="ModificarPerfil">Modificar perfil</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="Fragment1">Fragment 1</string>
+    <string name="PantallaInciarSessió">Iniciar Sessió</string>
+    <string name="PantallaModificarPerfil">Modificar perfil</string>
+    <string name="Històric_bd">Històric IMC i IGC</string>
+    <string name="Mail">Correu electrònic</string>
+    <string name="Mail_bd">Correu electrònic</string>
+
+    <string name="PreguntaTancarSessió">Estàs segur que vols tancar sessió?</string>
+    <string name="IniciarSessio">Iniciar sessió</string>
+    <string name="TancarSessió">Tancar sessió</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Títol">Crea el teu perfil</string>
+    <string name="Text_Botó">Crear perfil</string>
+    <string name="Cognom1">Primer cognom</string>
+    <string name="Cognom2">Segon cognom</string>
+    <string name="Email">Correu electrònic</string>
+    <string name="Password">Contrasenya</string>
+    <string name="Sexe_home">Home</string>
+    <string name="Sexe_Dona">Dona</string>
+    <string name="Sexe_Altre">Altre</string>
+    <string name="Username">Nom d\'usuari</string>
+    <string name="Data_Naixement">Data de naixement</string>
+    <string name="Checkbox_Contrasenya">Mostrar</string>
+    <string name="BotonTitulo">CrearPerfil</string>
+    <string name="button_programes">Programes</string>
+    <string name="button_rutines">Rutines</string>
+    <string name="button_colleccio">Col·lecció</string>
+    <string name="edit_email">Email</string>
+    <string name="enter_password">Password</string>
+    <string name="registrar_button">Registra\'t</string>
+    <string name="login_button">Iniciar sessió</string>
+    <string name="RegisterQuestion">Et vols registrar?</string>
+    <string name="button_google">Continuar amb Google</string>
+    <string name="button_facebook">Continuar amb Facebook</string>
+
+    <string name="facebook_app_id">344349210333001</string>
+    <string name="fb_login_protocol_scheme">fb344349210333001</string>
+    <string name="Preferencies">Preferències</string>
+    <string name="Força">Força</string>
+    <string name="Càrdio">Càrdio</string>
+    <string name="Ioga">Ioga</string>
+    <string name="Estiraments">Estiraments</string>
+    <string name="Pilates">Pilates</string>
+    <string name="Salut">Salut</string>
+    <string name="Pèrdua_Pes">Pèrdua de pes</string>
+    <string name="Flexibilitat">Flexibilitat</string>
+    <string name="Resistència">Resistència</string>
+    <string name="Recuperació">Recuperació</string>
+    <string name="Agilitat">Agilitat</string>
+    <string name="Enviar_Preferencies">Enviar preferències</string>
+    <string name="Experiència_Esportiva">Experiència esportiva</string>
+    <string name="Menys_6_Mesos">Menys de 6 mesos</string>
+    <string name="Entre_6_Mesos_2_Anys">Entre 6 mesos i 2 anys</string>
+    <string name="Més_2Anys">Més de 2 anys</string>
+    <string name="Rehabilitació">Rehabilitació</string>
+    <string name="Boton_Guardar">Guardar</string>
+    <string name="Pes_Pista">62.5</string>
+    <string name="Alçada_Pista">175.8</string>
+    <string name="EliminarPerfil">Eliminar perfil</string>
+
+    <string name="text_descripció">Descripció</string>
+    <string name="text_edat">Edat</string>
+    <string name="text_dificultat">Dificultat</string>
+    <string name="text_duració">Duració</string>
+    <string name="text_categoria">Categoria</string>
+    <string name="text_àreatreball">Àrea de treball</string>
+    <string name="title_activity_consultar_exercici">ConsultarExerciciActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="text_múscultreball">Múscul de treball</string>
+    <string name="text_entrenador">Entrenador</string>
+    <string name="boton_Guardar">GUARDAR</string>
+    <string name="Cognoms">Cognoms</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="Actualitzar_Perfil">Actualitzar perfil</string>
+    <string name="Restablir_Preferencies">Restablir preferències</string>
+    <string name="text_filtrar">Filtrar</string>
+    <string name="text_programs">Programes</string>
+    <string name="text_compartir">Compartir</string>
+    <string name="text_exercicis">Exercicis</string>
+    <string name="text_classes">Classes</string>
+    <string name="text_predefinedroutines">Rutines predefinides</string>
+    <string name="Collections">Col·leccions</string>
+    <string name="text_previous">Anterior</string>
+    <string name="text_next">Següent</string>
+    <string name="text_cancel">Cancel·lar</string>
+    <string name="Realitzar">Realitzar</string>
+    <string name="ConsultarPrograma">Consulta un Programa</string>
+    <string name="text_temps">Temps</string>
+    <string name="text_equipament">Equipament</string>
+    <string name="text_impacte">Impacte</string>
+
+</resources>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PreferencesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:contentDescription="@string/Logo"
+                    app:srcCompat="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/Preferencies"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="36sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutExperiencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-22dp"
+                    android:layout_weight="1"
+                    app:helperTextEnabled="false"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
+
+                    <TextView
+                        android:id="@+id/textViewExperiencia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Experiència_Esportiva"
+                        android:textSize="16sp"
+                        app:errorEnabled="true"
+                        android:clickable="true"
+                        android:focusableInTouchMode="true"/>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonPrincipiant"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="validateExperience"
+                            android:text="@string/Menys_6_Mesos"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonIntermedi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="validateExperience"
+                            android:text="@string/Entre_6_Mesos_2_Anys"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonAvançat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="validateExperience"
+                            android:text="@string/Més_2Anys"
+                            android:textSize="16sp" />
+
+                    </RadioGroup>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-22dp"
+                    android:layout_weight="1"
+                    app:helperTextEnabled="false"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
+
+                    <TextView
+                        android:id="@+id/textViewCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/CategoriesInterès"
+                        android:textSize="16sp"
+                        app:errorEnabled="true"
+                        android:clickable="true"
+                        android:focusableInTouchMode="true"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:id="@+id/checkBoxForça"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateCategories"
+                                android:text="@string/Força"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxIoga"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateCategories"
+                                android:text="@string/Ioga"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxRehabilitació"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateCategories"
+                                android:text="@string/Rehabilitació"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:id="@+id/checkBoxCardio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateCategories"
+                                android:text="@string/Càrdio"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxEstiraments"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateCategories"
+                                android:text="@string/Estiraments"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxPilates"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateCategories"
+                                android:text="@string/Pilates"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutObjectius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-22dp"
+                    android:layout_weight="1"
+                    app:helperTextEnabled="false"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
+
+                    <TextView
+                        android:id="@+id/textViewObjectius"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Objectiu"
+                        android:textSize="16sp"
+                        app:errorEnabled="true"
+                        android:clickable="true"
+                        android:focusableInTouchMode="true"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:id="@+id/checkBoxSalut"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateObjectives"
+                                android:text="@string/Salut"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxPerduaPes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateObjectives"
+                                android:text="@string/Pèrdua_Pes"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxResistència"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateObjectives"
+                                android:text="@string/Resistència"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxAgilitat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateObjectives"
+                                android:text="@string/Agilitat"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:id="@+id/checkBoxForça2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateObjectives"
+                                android:text="@string/Força"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxFlexibilitat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateObjectives"
+                                android:text="@string/Flexibilitat"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxRecuperació"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="validateObjectives"
+                                android:text="@string/Recuperació"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/buttonEnviar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/Enviar_Preferencies" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
