@@ -36,14 +36,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="87dp"
                     android:contentDescription="@string/Logo"
-                    app:srcCompat="@drawable/name" />
+                    app:srcCompat="@drawable/ic_vector_sharecommunity_text_blue" />
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="137dp"
                     android:contentDescription="@string/Logo"
-                    app:srcCompat="@drawable/logo" />
+                    app:srcCompat="@drawable/ic_vector_sharecommunity_logo" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/TextInputLayoutEmail"

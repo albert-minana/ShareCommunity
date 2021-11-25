@@ -35,7 +35,7 @@
                     android:layout_height="55dp"
                     android:baselineAlignBottom="false"
                     android:clickable="false"
-                    app:srcCompat="@drawable/logo" />
+                    app:srcCompat="@drawable/ic_vector_sharecommunity_logo" />
 
                 <TextView
                     android:id="@+id/textView2"
