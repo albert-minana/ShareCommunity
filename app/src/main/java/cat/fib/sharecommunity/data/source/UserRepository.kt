@@ -10,11 +10,11 @@ interface UserRepository {
 
     fun login(userUid: String): LiveData<Resource<User>>
 
-    fun getUser(userId: Int): LiveData<Resource<User>>
+    //fun getUser(userId: Int): LiveData<Resource<User>>
 
     fun createUser(user: User): LiveData<Resource<User>>
 
-    fun deleteUser(userId: Int): LiveData<Resource<User>>
+   // fun deleteUser(userId: Int): LiveData<Resource<User>>
 
     fun updateUser(user: User): LiveData<Resource<User>>
 

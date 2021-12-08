@@ -44,7 +44,7 @@ class ProfileFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val prefs = requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        identificadorUsuari = prefs.getString("userId", null)
+        identificadorUsuari = prefs.getString("email", null)
     }
 
     /** Function onCreateView

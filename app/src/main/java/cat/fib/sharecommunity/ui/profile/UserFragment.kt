@@ -30,7 +30,7 @@ import java.time.format.DateTimeFormatter
  *  Fragment encarregat de consultar i modificar la informació d'usuari del perfil d'usuari
  *
  *  @constructor Crea el Fragment UserFragment
- *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
+ *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael
  */
 @AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
@@ -43,9 +43,9 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
     lateinit var nom: TextView
     lateinit var cognoms: TextView
-    lateinit var usuari: TextView
     lateinit var correu: TextView
     lateinit var contrasenya: TextView
+    lateinit var telefon: TextView
     lateinit var data: TextView
     lateinit var sexeDona: RadioButton
     lateinit var sexeHome: RadioButton
@@ -64,7 +64,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val prefs = requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        identificadorUsuari = prefs.getString("userId", null)
+        identificadorUsuari = prefs.getString("email", null)
         proveidor = prefs.getString("provider", null)
 
     }
@@ -82,11 +82,9 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         val v: View = inflater.inflate(R.layout.fragment_user, container, false)
         nom = v.findViewById(R.id.Nom)
         cognoms = v.findViewById(R.id.Cognoms)
-        usuari = v.findViewById(R.id.NomUsuari)
         correu = v.findViewById(R.id.CorreuElectronic)
         contrasenya = v.findViewById(R.id.Contrasenya)
-        //proveidor = "FitHaus"
-        //identificadorUsuari = "3"
+        telefon = v.findViewById(R.id.Telefon)
         layaoutContrasenya = v.findViewById(R.id.textInputLayoutContrasenya)
         if (proveidor == "Google" || proveidor == "Facebook") {
             correu.isEnabled = false
@@ -104,7 +102,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         botoActualitzarPerfil = v.findViewById(R.id.ActualitzarUsuariButton)
 
         identificadorUsuari?.let {
-            viewModel.getUser(it.toInt())
+            viewModel.getUserByEmail(it)
         }
 
         viewModel.user.observe(viewLifecycleOwner, Observer {
@@ -129,10 +127,10 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     fun setUpUser(userData: User?) {
         nom.text = userData?.firstname.toString()
         cognoms.text = userData?.lastname.toString()
-        usuari.text = userData?.username.toString()
         correu.text = userData?.email.toString()
         contrasenya.text = userData?.password.toString()
-        if (userData?.birthdate != null) data.text = LocalDate.parse(userData?.birthdate.toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString()
+        telefon.text = userData?.phone.toString()
+        if (userData?.birthday != null) data.text = LocalDate.parse(userData?.birthday.toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString()
         when (userData?.gender) {
             "M" -> sexeHome.isChecked = true
             "W" -> sexeDona.isChecked = true
@@ -174,22 +172,22 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         botoActualitzarPerfil.setOnClickListener {
             val validateName = validateName()
             val validateLastName = validateLastName()
-            val validateUsername = validateUsername()
             var validateEmail = true
-            if (proveidor == "FitHaus") validateEmail = validateEmail()
+            if (proveidor == "Local") validateEmail = validateEmail()
             var validatePassword = true
-            if (proveidor == "FitHaus") validatePassword = validatePassword()
+            if (proveidor == "Local") validatePassword = validatePassword()
+            val validatePhone = validatePhone()
             val validateBirthday = validateBirthday()
             val validateGender = validateGender()
-            if (validateName && validateLastName && validateUsername && validateEmail && validatePassword && validateBirthday && validateGender) {
+            if (validateName && validateLastName && validateEmail && validatePassword && validatePhone && validateBirthday && validateGender) {
                 user!!.firstname = nom.text.toString()
                 user!!.lastname = cognoms.text.toString()
-                user!!.username = usuari.text.toString()
-                if (proveidor == "FitHaus") {
+                if (proveidor == "Local") {
                     user!!.email = correu.text.toString()
                     user!!.password = contrasenya.text.toString()
                 }
-                user!!.birthdate = LocalDate.parse(data.text.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
+                user!!.phone = telefon.text.toString()
+                user!!.birthday = LocalDate.parse(data.text.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
                 user!!.gender = when {
                     sexeHome.isChecked -> "M"
                     sexeDona.isChecked -> "W"
@@ -205,6 +203,8 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                         prefs.apply()
                         (activity as MainActivity).setNameAndEmail()
                     } else if (it.status == Status.ERROR) {
+                        showErrorField(2)
+                        /*
                         if (it.status.toString().contentEquals("username")){
                             showErrorField(1)
                         }
@@ -212,6 +212,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                             showErrorField(2)
                         }
                         else Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
+                         */
                     }
                 })
             }
@@ -255,21 +256,21 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         }
     }
 
-    /** Function validateUserName
+    /** Function validatePhone
      *
-     *  Funció que comprova si el camp Nom Usuari és correcte.
+     *  Funció que comprova si el camp Telèfon és correcte.
      *
      *  @return Retorna cert si és correcte, fals en cas contrari.
      *  @author Adrià Espinola Garcia, Albert Miñana Montecino, Daniel Cárdenas Rafael
      */
-    private fun validateUsername(): Boolean {
-        val username = usuari.text.toString()
-        if (username.isEmpty()) {
-            textInputLayoutNomUsuari?.setError("El camp no pot ser buit")
+    private fun validatePhone(): Boolean {
+        val phone = telefon.text.toString()
+        if (phone.isEmpty()) {
+            textInputLayoutTelefon?.setError("El camp no pot ser buit")
             return false
         }
         else {
-            textInputLayoutNomUsuari?.setError(null)
+            textInputLayoutTelefon?.setError(null)
             return true
         }
     }

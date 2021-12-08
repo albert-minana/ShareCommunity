@@ -25,19 +25,10 @@ class CrearPerfilActivityTest {
        //onView(withId(R.id.CrearPerfilButton)).perform(click())
     }
 
-    @Test
-    fun insert_primer_cognom() {
-        onView(withId(R.id.PrimerCognom)).perform(typeText("Perez"))
-    }
-
-    @Test
-    fun insert_segon_cognom() {
-        onView(withId(R.id.SegonCognom)).perform(typeText("Fernandez"))
-    }
 
     @Test
     fun insert_nom_usuari() {
-        onView(withId(R.id.NomUsuari)).perform(typeText("paco2"))
+        onView(withId(R.id.Telefon)).perform(typeText("paco2"))
     }
 
     @Test

@@ -65,14 +65,13 @@ class UserRepositoryDefault(
 
             override fun saveCallResult(item: User) {
                 userDao.insertUser(item)
-                user.id = item.id
             }
 
-            override fun loadFromDb() = userDao.getUserById(user.id)
+            override fun loadFromDb() = userDao.getUserByEmail(user.email)
 
         }.asLiveData()
     }
-
+/*
     override fun getUser(userId: Int): LiveData<Resource<User>> {
         return object : NetworkDatabaseResource<User, User>(appExecutors) {
             override fun saveCallResult(item: User) {
@@ -83,22 +82,22 @@ class UserRepositoryDefault(
 
             override fun createCall() = userService.getUser(userId)
         }.asLiveData()
-    }
+    } */
 
     override fun updateUser(user: User): LiveData<Resource<User>> {
         return object : NetworkDatabaseResource<User, User>(appExecutors) {
 
-            override fun createCall() = userService.updateUser(user.id, user)
+            override fun createCall() = userService.updateUser(user.email, user)
 
             override fun saveCallResult(item: User) {
                 userDao.insertUser(item)
             }
 
-            override fun loadFromDb() = userDao.getUserById(user.id)
+            override fun loadFromDb() = userDao.getUserByEmail(user.email)
 
         }.asLiveData()
     }
-
+/*
     override fun deleteUser(userId: Int): LiveData<Resource<User>> {
         return object : NetworkDatabaseResource<User, User>(appExecutors) {
             override fun saveCallResult(item: User) {
@@ -111,6 +110,8 @@ class UserRepositoryDefault(
 
         }.asLiveData()
     }
+
+ */
 
 
 }

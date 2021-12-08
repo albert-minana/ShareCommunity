@@ -1,5 +1,5 @@
 <resources>
-    <string name="prefs_file">cat.fib.fithaus.PREFERENCE_FILE_KEY</string>
+    <string name="prefs_file">cat.fib.sharecommunity.PREFERENCE_FILE_KEY</string>
 
     <string name="app_name">ShareCommunity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -58,7 +58,6 @@
     <string name="Sexe_home">Home</string>
     <string name="Sexe_Dona">Dona</string>
     <string name="Sexe_Altre">Altre</string>
-    <string name="Username">Nom d\'usuari</string>
     <string name="Data_Naixement">Data de naixement</string>
     <string name="Checkbox_Contrasenya">Mostrar</string>
     <string name="BotonTitulo">CrearPerfil</string>
@@ -132,5 +131,6 @@
     <string name="text_temps">Temps</string>
     <string name="text_equipament">Equipament</string>
     <string name="text_impacte">Impacte</string>
+    <string name="Phone">Telèfon</string>
 
 </resources>

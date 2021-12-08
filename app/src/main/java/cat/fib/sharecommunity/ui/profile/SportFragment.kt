@@ -51,7 +51,7 @@ class SportFragment : Fragment(R.layout.fragment_sport) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val prefs = requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        identificadorUsuari = prefs.getString("userId", null)
+        identificadorUsuari = prefs.getString("email", null)
     }
 
     /** Function onCreateView
@@ -76,7 +76,7 @@ class SportFragment : Fragment(R.layout.fragment_sport) {
 
 
         identificadorUsuari?.let {
-            viewModel.getUser(it.toInt())
+            //viewModel.getUser(it.toInt())
         }
 
         viewModel.user.observe(viewLifecycleOwner, Observer {
@@ -97,6 +97,7 @@ class SportFragment : Fragment(R.layout.fragment_sport) {
      *  @author  Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
      */
     fun setUpSport(userData: User?) {
+        /*
         val levelUser = getLevel(userData?.level)
         level.text = levelUser
         val categories = getCategories(userData?.categories)
@@ -106,6 +107,8 @@ class SportFragment : Fragment(R.layout.fragment_sport) {
         routinesDone.text = userData?.activitiesdone.toString()
         points.text = userData?.points.toString()
         achievements.text = userData?.achievements.toString()
+
+         */
     }
 
     /** Function getLevel

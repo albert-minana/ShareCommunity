@@ -19,8 +19,11 @@ interface UserDao {
      * @param userId the user id.
      * @return the user with id.
      */
+    /*
     @Query("SELECT * FROM user WHERE id = :userId")
     fun getUserById(userId: Int): LiveData<User>
+
+     */
 
     /**
      * Select a user by userEmail.
@@ -41,9 +44,6 @@ interface UserDao {
     fun getUserByUid(userUid: String): LiveData<User>
 
 
-    @Query("SELECT * FROM user WHERE username = :username")
-    fun getUserByUsername(username: String): LiveData<User>
-
     /**
      * Insert a user in the database. If the user already exists, replace it.
      *
@@ -51,7 +51,7 @@ interface UserDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User)
-
+/*
     /**
      * Delete a user in the database.
      *
@@ -59,4 +59,6 @@ interface UserDao {
      */
     @Query("DELETE FROM user WHERE id = :userId")
     fun deleteUser(userId: Int)
+
+ */
 }

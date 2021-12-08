@@ -43,7 +43,7 @@ class PreferencesActivity : AppCompatActivity() {
         identificadorUsuari = prefs.getString("userId", null)
         setContentView(R.layout.activity_preferences)
         identificadorUsuari?.let {
-            viewModel.getUser(it.toInt())
+            //viewModel.getUser(it.toInt())
         }
         viewModel.user.observe(this, Observer {
             if (it.status == Status.SUCCESS) {
@@ -93,9 +93,12 @@ class PreferencesActivity : AppCompatActivity() {
      *  @author Albert Miñana Montecino, Adrià Espinola Garcia
      */
     private fun setContent(user: User?) {
+        /*
         val level = user?.level
         val objectives = user?.objectives
         val categories = user?.categories
+
+
         when (level) {
             "B" -> radioButtonPrincipiant?.isChecked = true
             "I" -> radioButtonIntermedi.isChecked = true
@@ -120,6 +123,8 @@ class PreferencesActivity : AppCompatActivity() {
             if (categories.contains("P")) checkBoxPilates.isChecked = true
         }
 
+         */
+
     }
 
     /** Funció updateU
@@ -129,7 +134,7 @@ class PreferencesActivity : AppCompatActivity() {
      *  @author Adrià Espinola.
      */
     private fun updateUser(user: User?, objectius: MutableList<String>, categories: MutableList<String>, experiencia: String) {
-        if (user != null) {
+     /*   if (user != null) {
             user.objectives = ArrayList(objectius)
             user.categories = ArrayList(categories)
             user.level = experiencia
@@ -142,6 +147,8 @@ class PreferencesActivity : AppCompatActivity() {
                 } else if (it.status == Status.ERROR) Toast.makeText(this, "ERROR!", Toast.LENGTH_LONG).show()
             })
         }
+
+      */
     }
 
     /** Function validateExperience

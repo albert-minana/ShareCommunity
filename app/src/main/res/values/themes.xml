@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FitHaus" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.ShareCommunity" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_dark</item>
         <item name="colorPrimaryVariant">@color/blue_dark</item>
@@ -14,16 +14,16 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.FitHaus.NoActionBar">
+    <style name="Theme.ShareCommunity.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.FitHaus.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.ShareCommunity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.FitHaus.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.ShareCommunity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Theme.FitHaus.SplashScreen" parent="Theme.FitHaus">
+    <style name="Theme.ShareCommunity.SplashScreen" parent="Theme.ShareCommunity">
         <item name="android:windowBackground">@drawable/splashscreen</item>
     </style>
 </resources>

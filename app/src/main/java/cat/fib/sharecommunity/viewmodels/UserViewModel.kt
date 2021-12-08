@@ -20,10 +20,12 @@ class UserViewModel @Inject constructor(
 
     //val user = userRepository.getUser("15")
     lateinit var user : LiveData<Resource<User>> // = exerciseRepository.getExercise("1000")
-
+/*
     fun getUser(id: Int) {
         user = userRepository.getUser(id)
     }
+
+ */
 
 
     fun createUser(user: User) {
@@ -35,7 +37,7 @@ class UserViewModel @Inject constructor(
     }
 
     fun deleteUser (userId: Int) {
-        user = userRepository.deleteUser(userId)
+        //user = userRepository.deleteUser(userId)
     }
 
     fun login(userEmail: String, userPassword: String) {

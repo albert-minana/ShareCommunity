@@ -45,7 +45,7 @@
                     android:fontFamily="sans-serif-black"
                     android:text="@string/Títol"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/blue_dark"
                     android:textSize="36sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -83,22 +83,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutNomUsuari"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
-
-                    <EditText
-                        android:id="@+id/NomUsuari"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:ems="10"
-                        android:hint="@string/Username"
-                        android:inputType="textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutCorreuElectronic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -130,6 +114,23 @@
                         android:ems="10"
                         android:hint="@string/Password"
                         android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutTelefon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/Telefon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:ems="10"
+                        android:hint="@string/Phone"
+                        android:inputType="phone"
+                        android:phoneNumber="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

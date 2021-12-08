@@ -32,9 +32,9 @@ import java.time.format.DateTimeFormatter
 class CrearPerfilActivity : AppCompatActivity() {
     var Nom: EditText? = null
     var Cognoms: EditText? = null
-    var NomUsuari: EditText? = null
     var CorreuElectronic: EditText? = null
     var Contrasenya: EditText? = null
+    var Telefon: EditText? = null
     var DataNaixement: EditText? = null
     var Sexe_Dona: RadioButton? = null
     var Sexe_Home: RadioButton? = null
@@ -56,9 +56,9 @@ class CrearPerfilActivity : AppCompatActivity() {
         //Asignem els valors de cada component de la interfície a les variables
         Nom = findViewById (R.id.Nom)
         Cognoms = findViewById (R.id.Cognoms)
-        NomUsuari = findViewById (R.id.NomUsuari)
         CorreuElectronic = findViewById (R.id.CorreuElectronic)
         Contrasenya = findViewById (R.id.Contrasenya)
+        Telefon = findViewById (R.id.Telefon)
         DataNaixement = findViewById (R.id.DataNaixement)
         DataNaixement?.setOnClickListener {
             showDatePickerDialog()
@@ -79,17 +79,17 @@ class CrearPerfilActivity : AppCompatActivity() {
         ActualitzarUsuariButton.setOnClickListener {
             val validateName = validateName()
             val validateLastName = validateLastName()
-            val validateUsername = validateUsername()
             val validateEmail = validateEmail()
             val validatePassword = validatePassword()
+            val validatePhone = validatePhone()
             val validateBirthday = validateBirthday()
             val validateGender = validateGender()
-            if (validateName && validateLastName && validateUsername && validateEmail && validatePassword && validateBirthday && validateGender) {
-                val name = Nom?.text.toString()
+            if (validateName && validateLastName && validateEmail && validatePassword && validatePhone && validateBirthday && validateGender) {
+                val firstname = Nom?.text.toString()
                 val lastname = Cognoms?.text.toString()
-                val username = NomUsuari?.text.toString()
                 val email = CorreuElectronic?.text.toString()
                 val password = Contrasenya?.text.toString()
+                val phone = Telefon?.text.toString()
                 val birthday = DataNaixement?.text.toString()
                 var gender: String
                 when {
@@ -97,15 +97,15 @@ class CrearPerfilActivity : AppCompatActivity() {
                     Sexe_Dona?.isChecked == true -> gender = "W"
                     else -> gender = "X"
                 }
-                val user = User(name, lastname, username, password, email, gender,
-                        LocalDate.parse(birthday, DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString())
+
+                val user = User(email, password, firstname, lastname, phone,
+                        LocalDate.parse(birthday, DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString(), gender)
                 viewModel.createUser(user)
                 viewModel.user.observe(this, Observer {
                     if (it.status == Status.SUCCESS) {
                         //guarda id
                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                        prefs.putString("userId", it.data?.id.toString())
-                        prefs.putString("provider", "FitHaus")
+                        prefs.putString("provider", "Local")
                         prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
                         prefs.putString("email", it.data?.email.toString())
                         prefs.apply()
@@ -157,21 +157,21 @@ class CrearPerfilActivity : AppCompatActivity() {
         }
     }
 
-    /** Function validateUserName
+    /** Function validatePhone
      *
-     *  Funció que comprova si el camp Nom Usuari és correcte.
+     *  Funció que comprova si el camp Telèfon és correcte.
      *
      *  @return Retorna cert si és correcte, fals en cas contrari.
      *  @author Adrià Espinola Garcia, Albert Miñana Montecino, Daniel Cárdenas Rafael
      */
-    private fun validateUsername(): Boolean {
-        val username = NomUsuari?.text.toString()
-        if (username.isEmpty()) {
-            textInputLayoutNomUsuari?.setError("El camp no pot ser buit")
+    private fun validatePhone(): Boolean {
+        val phone = Telefon?.text.toString()
+        if (phone.isEmpty()) {
+            textInputLayoutTelefon?.setError("El camp no pot ser buit")
             return false
         }
         else {
-            textInputLayoutNomUsuari?.setError(null)
+            textInputLayoutTelefon?.setError(null)
             return true
         }
     }

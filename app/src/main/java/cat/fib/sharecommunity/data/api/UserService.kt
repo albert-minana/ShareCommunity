@@ -26,8 +26,8 @@ interface UserService {
     @POST("/users/login")
     fun login(@Body googleFacebookInformation: GoogleFacebookInformation): LiveData<ApiResponse<User>>
 
-    @PATCH("/users/{id}/")
-    fun updateUser(@Path("id") userId: Int, @Body updatedUser: User): LiveData<ApiResponse<User>>
+    @PATCH("/users/{email}/")
+    fun updateUser(@Path("email") userEmail: String, @Body updatedUser: User): LiveData<ApiResponse<User>>
 
     @DELETE ("/users/{id}/")
     fun deleteUser(@Path ("id") userId: Int): LiveData<ApiResponse<User>>

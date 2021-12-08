@@ -78,7 +78,7 @@ class PhysicalFragment : Fragment(R.layout.fragment_physical) {
         botoActualitzarPerfil = v.findViewById(R.id.ActualitzarPreferencesPerfilButton)
 
         identificadorUsuari?.let {
-            viewModel.getUser(it.toInt())
+            //viewModel.getUser(it.toInt())
         }
 
         viewModel.user.observe(viewLifecycleOwner, Observer {
@@ -101,10 +101,13 @@ class PhysicalFragment : Fragment(R.layout.fragment_physical) {
      *  @author  Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
      */
     private fun setUpPhysical(userData: User?) {
+        /*
         weight.text = userData?.weight.toString()
         height.text = userData?.height.toString()
         imc.text = userData?.imc.toString()
         igc.text = userData?.igc.toString()
+
+         */
     }
 
     private fun setUpPhysical2(userData: HealthData?) {
@@ -125,6 +128,7 @@ class PhysicalFragment : Fragment(R.layout.fragment_physical) {
             val validateWeight = validateWeight()
             val validateHeight = validateHeight()
             if (validateWeight && validateHeight) {
+                /*
                 user!!.weight = weight.text.toString().toFloat()
                 user!!.height = height.text.toString().toFloat()
                 val user_weight = weight.text.toString().toFloat()
@@ -141,6 +145,8 @@ class PhysicalFragment : Fragment(R.layout.fragment_physical) {
                         Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
                     }
                 })
+
+                 */
 
             }
         }

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.data.models.User
 import cat.fib.sharecommunity.utils.Status
+import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
 import cat.fib.sharecommunity.viewmodels.UserViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -25,7 +26,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_authentication_providers.*
-import kotlin.random.Random
 
 /** Activity AuthenticationProviders
  *
@@ -39,6 +39,7 @@ import kotlin.random.Random
 class AuthenticationProviders : AppCompatActivity() {
 
     private val viewModel by viewModels<UserViewModel>()            //ViewModel de l'usuari
+    private val userProfileViewModel by viewModels<UserProfileViewModel>()            //ViewModel de l'usuari
     private val GOOGLE_SIGN_IN = 100                                // Constante de Google
     private val callbackManager = CallbackManager.Factory.create()  // Constante de Facebook
 
@@ -50,7 +51,7 @@ class AuthenticationProviders : AppCompatActivity() {
      *  @author Albert Miñana Montecino i Adrià Espinola Garcia
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_FitHaus)
+        setTheme(R.style.Theme_ShareCommunity)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication_providers)
         session()
@@ -78,8 +79,8 @@ class AuthenticationProviders : AppCompatActivity() {
      */
     private fun session() {
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val userId = prefs.getString("userId", null)
-        if (userId != null) {
+        val email = prefs.getString("email", null)
+        if (email != null) {
             LinearLayoutAuthentication.visibility = View.INVISIBLE
             showHome()
         }
@@ -97,19 +98,18 @@ class AuthenticationProviders : AppCompatActivity() {
             val validatePassword = validatePassword()
             if (validateEmail && validatePassword) {
                 //showHome() //treure linia quan estigui integrat
-                viewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
-                viewModel.user.observe(this, Observer {
-                    if (it.status == Status.SUCCESS) {
+                userProfileViewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
+                userProfileViewModel.userProfile.observe(this, Observer {
+                    if (it != null) {
                         //guarda id
                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                        prefs.putString("userId", it.data?.id.toString())
-                        prefs.putString("provider", "FitHaus")
-                        prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
-                        prefs.putString("email", it.data?.email.toString())
+                        prefs.putString("provider", "Local")
+                        prefs.putString("name", it.firstname?.toString() + " " + it.lastname?.toString())
+                        prefs.putString("email", it.email?.toString())
                         prefs.apply()
                         showHome()
-                    } else if (it.status == Status.ERROR)
-                        showAlertFitHaus()
+                    } else if (it == null)
+                        showAlertShareCommunity()
                 })
             }
         }
@@ -206,7 +206,6 @@ class AuthenticationProviders : AppCompatActivity() {
                                     if (it.status == Status.SUCCESS) {
                                         //guarda id
                                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                                        prefs.putString("userId", it.data?.id.toString())
                                         prefs.putString("provider", "Facebook")
                                         prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
                                         prefs.putString("email", it.data?.email.toString())
@@ -216,16 +215,12 @@ class AuthenticationProviders : AppCompatActivity() {
                                         val index = fullName?.indexOf(" ", 0, false)
                                         val firstName = index?.let { it -> fullName?.substring(0, it) }
                                         val lastName = index?.plus(1)?.let { it -> fullName?.substring(it) }
-                                        val indexEmail = email?.indexOf("@", 0, false)
-                                        val emailName = indexEmail?.let { it -> email?.substring(0, it) }
-                                        val username = generateUsername(emailName)
-                                        val user = User(firstName.toString(), lastName.toString(), username, email.toString(), uid.toString(), "Facebook")
+                                        val user = User(email.toString(), "Facebook", uid.toString(), firstName.toString(), lastName.toString())
                                         viewModel.createUser(user)
                                         viewModel.user.observe(this@AuthenticationProviders, Observer {
                                             if (it.status == Status.SUCCESS) {
                                                 //guarda id
                                                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                                                prefs.putString("userId", it.data?.id.toString())
                                                 prefs.putString("provider", "Facebook")
                                                 prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
                                                 prefs.putString("email", it.data?.email.toString())
@@ -288,7 +283,6 @@ class AuthenticationProviders : AppCompatActivity() {
                                     if (it.status == Status.SUCCESS) {
                                         //guarda id
                                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                                        prefs.putString("userId", it.data?.id.toString())
                                         prefs.putString("provider", "Google")
                                         prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
                                         prefs.putString("email", it.data?.email.toString())
@@ -298,16 +292,12 @@ class AuthenticationProviders : AppCompatActivity() {
                                         val index = fullName?.indexOf(" ", 0, false)
                                         val firstName = index?.let { it -> fullName?.substring(0, it) }
                                         val lastName = index?.plus(1)?.let { it -> fullName?.substring(it) }
-                                        val indexEmail = email?.indexOf("@", 0, false)
-                                        val emailName = indexEmail?.let { it -> email?.substring(0, it) }
-                                        val username = generateUsername(emailName)
-                                        val user = User(firstName.toString(), lastName.toString(), username, email.toString(), uid.toString(), "Google")
+                                        val user = User(email.toString(), "Google", uid.toString(), firstName.toString(), lastName.toString())
                                         viewModel.createUser(user)
                                         viewModel.user.observe(this, Observer {
                                             if (it.status == Status.SUCCESS) {
                                                 //guarda id
                                                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                                                prefs.putString("userId", it.data?.id.toString())
                                                 prefs.putString("provider", "Google")
                                                 prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
                                                 prefs.putString("email", it.data?.email.toString())
@@ -387,13 +377,13 @@ class AuthenticationProviders : AppCompatActivity() {
         dialog.show()
     }
 
-    /** Function showAlertFitHaus
+    /** Function showAlertShareCommunity
      *
      *  Funció encarregada de mostrar un missatge d'error d'autenticació de l'usuari
      *
      *  @author Albert Miñana Montecino
      */
-    private fun showAlertFitHaus() {
+    private fun showAlertShareCommunity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Advertència")
         builder.setMessage("Les credencials introduïdes són incorrectes")
@@ -403,23 +393,4 @@ class AuthenticationProviders : AppCompatActivity() {
         dialog.show()
     }
 
-    /** Function generateUsername
-     *
-     *  Funció que genera un username a partir del nom que conté un email.
-     *
-     *  @param emailName
-     *  @return Retorna el username generat.
-     *  @author Albert Miñana Montecino i Adrià Espinola Garcia
-     */
-    private fun generateUsername(emailName: String?) : String {
-        var numberText = StringBuilder()
-        val numberArray = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-
-        val totalNumbers = 3
-
-        for (index in 0 until totalNumbers) {
-            numberText.append(numberArray[Random.nextInt(numberArray.size)]);
-        }
-        return "$emailName#$numberText"
-    }
 }
