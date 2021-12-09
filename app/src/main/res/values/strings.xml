@@ -132,5 +132,9 @@
     <string name="text_equipament">Equipament</string>
     <string name="text_impacte">Impacte</string>
     <string name="Phone">Telèfon</string>
+    <string name="productes">Productes</string>
+    <string name="serveis">Serveis</string>
+    <string name="comunitat">Comunitat</string>
+    <string name="benvinguts">Benvinguts a ShareCommunity!</string>
 
 </resources>

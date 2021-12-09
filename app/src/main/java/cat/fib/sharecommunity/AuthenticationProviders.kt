@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.data.models.User
+import cat.fib.sharecommunity.dataclasses.Resource
+import cat.fib.sharecommunity.dataclasses.UserProfile
 import cat.fib.sharecommunity.utils.Status
 import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
 import cat.fib.sharecommunity.viewmodels.UserViewModel
@@ -38,8 +41,7 @@ import kotlinx.android.synthetic.main.activity_authentication_providers.*
 @AndroidEntryPoint
 class AuthenticationProviders : AppCompatActivity() {
 
-    private val viewModel by viewModels<UserViewModel>()            //ViewModel de l'usuari
-    private val userProfileViewModel by viewModels<UserProfileViewModel>()            //ViewModel de l'usuari
+    private val viewModel by viewModels<UserProfileViewModel>()            //ViewModel de l'usuari
     private val GOOGLE_SIGN_IN = 100                                // Constante de Google
     private val callbackManager = CallbackManager.Factory.create()  // Constante de Facebook
 
@@ -98,18 +100,21 @@ class AuthenticationProviders : AppCompatActivity() {
             val validatePassword = validatePassword()
             if (validateEmail && validatePassword) {
                 //showHome() //treure linia quan estigui integrat
-                userProfileViewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
-                userProfileViewModel.userProfile.observe(this, Observer {
-                    if (it != null) {
+                viewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
+                viewModel.userProfile.observe(this, Observer {
+                    if (it.status == Resource.Status.SUCCESS) {
                         //guarda id
                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                         prefs.putString("provider", "Local")
-                        prefs.putString("name", it.firstname?.toString() + " " + it.lastname?.toString())
-                        prefs.putString("email", it.email?.toString())
+                        prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
+                        prefs.putString("email", it.data?.email.toString())
                         prefs.apply()
                         showHome()
-                    } else if (it == null)
+                    }
+                    else if (it.status == Resource.Status.ERROR) {
                         showAlertShareCommunity()
+                        it.status = Resource.Status.LOADING
+                    }
                 })
             }
         }
@@ -202,8 +207,8 @@ class AuthenticationProviders : AppCompatActivity() {
                                 val email = it.result?.user?.email
                                 val uid = it.result?.user?.uid
                                 viewModel.login(uid.toString())
-                                viewModel.user.observe(this@AuthenticationProviders, Observer {
-                                    if (it.status == Status.SUCCESS) {
+                                viewModel.userProfile.observe(this@AuthenticationProviders, Observer {
+                                    if (it.status == Resource.Status.SUCCESS) {
                                         //guarda id
                                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                                         prefs.putString("provider", "Facebook")
@@ -211,14 +216,15 @@ class AuthenticationProviders : AppCompatActivity() {
                                         prefs.putString("email", it.data?.email.toString())
                                         prefs.apply()
                                         showHome()
-                                    } else if (it.status == Status.ERROR) {
+                                    } else if (it.status == Resource.Status.ERROR) {
+                                        it.status = Resource.Status.LOADING
                                         val index = fullName?.indexOf(" ", 0, false)
                                         val firstName = index?.let { it -> fullName?.substring(0, it) }
                                         val lastName = index?.plus(1)?.let { it -> fullName?.substring(it) }
-                                        val user = User(email.toString(), "Facebook", uid.toString(), firstName.toString(), lastName.toString())
+                                        val user = UserProfile(email.toString(), "Facebook", uid.toString(), firstName.toString(), lastName.toString())
                                         viewModel.createUser(user)
-                                        viewModel.user.observe(this@AuthenticationProviders, Observer {
-                                            if (it.status == Status.SUCCESS) {
+                                        viewModel.userProfile.observe(this@AuthenticationProviders, Observer {
+                                            if (it.status == Resource.Status.SUCCESS) {
                                                 //guarda id
                                                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                                                 prefs.putString("provider", "Facebook")
@@ -226,7 +232,8 @@ class AuthenticationProviders : AppCompatActivity() {
                                                 prefs.putString("email", it.data?.email.toString())
                                                 prefs.apply()
                                                 showSurvey()
-                                            } else if (it.status == Status.ERROR) {
+                                            } else if (it.status == Resource.Status.ERROR) {
+                                                it.status = Resource.Status.LOADING
                                                 //Toast.makeText(this@AuthenticationProviders, "ERROR!", Toast.LENGTH_LONG).show()
                                             }
                                         })
@@ -279,8 +286,8 @@ class AuthenticationProviders : AppCompatActivity() {
                                 val email = it.result?.user?.email
                                 val uid = it.result?.user?.uid
                                 viewModel.login(uid.toString())
-                                viewModel.user.observe(this, Observer {
-                                    if (it.status == Status.SUCCESS) {
+                                viewModel.userProfile.observe(this, Observer {
+                                    if (it.status == Resource.Status.SUCCESS) {
                                         //guarda id
                                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                                         prefs.putString("provider", "Google")
@@ -288,14 +295,15 @@ class AuthenticationProviders : AppCompatActivity() {
                                         prefs.putString("email", it.data?.email.toString())
                                         prefs.apply()
                                         showHome()
-                                    } else if (it.status == Status.ERROR) {
+                                    } else if (it.status == Resource.Status.ERROR) {
+                                        it.status = Resource.Status.LOADING
                                         val index = fullName?.indexOf(" ", 0, false)
                                         val firstName = index?.let { it -> fullName?.substring(0, it) }
                                         val lastName = index?.plus(1)?.let { it -> fullName?.substring(it) }
-                                        val user = User(email.toString(), "Google", uid.toString(), firstName.toString(), lastName.toString())
+                                        val user = UserProfile(email.toString(), "Google", uid.toString(), firstName.toString(), lastName.toString())
                                         viewModel.createUser(user)
-                                        viewModel.user.observe(this, Observer {
-                                            if (it.status == Status.SUCCESS) {
+                                        viewModel.userProfile.observe(this, Observer {
+                                            if (it.status == Resource.Status.SUCCESS) {
                                                 //guarda id
                                                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                                                 prefs.putString("provider", "Google")
@@ -303,7 +311,8 @@ class AuthenticationProviders : AppCompatActivity() {
                                                 prefs.putString("email", it.data?.email.toString())
                                                 prefs.apply()
                                                 showSurvey()
-                                            } else if (it.status == Status.ERROR) {
+                                            } else if (it.status == Resource.Status.ERROR) {
+                                                it.status = Resource.Status.LOADING
                                                 //Toast.makeText(this, "ERROR!", Toast.LENGTH_LONG).show()
                                             }
                                         })

@@ -10,18 +10,34 @@ import kotlinx.android.parcel.Parcelize
 data class UserProfile(
     var email: String, //Document ID is actually the user id
     var provider: String,
-    var uid: String,
-    var password: String,
+    var uid: String?,
+    var password: String?,
     var firstname: String,
     var lastname: String,
-    var phone: String,
-    var birthday: String,
-    var gender: String,
+    var phone: String?,
+    var birthday: String?,
+    var gender: String?,
     /*var productsobtained: ArrayList<String>,
     var servicesobtained: ArrayList<String>,
     var productsgiven: ArrayList<String>,
     var servicesgiven: ArrayList<String>, */
-    var aptitudes: String) : Parcelable {
+    var aptitudes: String?) : Parcelable {
+
+    constructor(email: String,
+            password: String,
+            firstname: String,
+            lastname: String,
+            phone: String,
+            birthday: String,
+            gender: String
+    ) : this(email, "Local", null, password, firstname, lastname, phone, birthday, gender, null)
+
+    constructor(email: String,
+            provider: String,
+            uid: String,
+            firstname: String,
+            lastname: String
+    ) : this(email, provider, uid, null, firstname, lastname, null, null, null, null)
 
     companion object {
         fun DocumentSnapshot.toUserProfile(): UserProfile? {

@@ -12,8 +12,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.data.models.User
+import cat.fib.sharecommunity.dataclasses.Resource
+import cat.fib.sharecommunity.dataclasses.UserProfile
 import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
 import cat.fib.sharecommunity.utils.Status
+import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
 import cat.fib.sharecommunity.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_crear_perfil.*
@@ -41,7 +44,7 @@ class CrearPerfilActivity : AppCompatActivity() {
     var Sexe_Altre: RadioButton? = null
 
 
-    private val viewModel by viewModels<UserViewModel>()
+    private val viewModel by viewModels<UserProfileViewModel>()
 
     /** Funció inicialitzadora
      *
@@ -98,19 +101,21 @@ class CrearPerfilActivity : AppCompatActivity() {
                     else -> gender = "X"
                 }
 
-                val user = User(email, password, firstname, lastname, phone,
+                val user = UserProfile(email, password, firstname, lastname, phone,
                         LocalDate.parse(birthday, DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString(), gender)
                 viewModel.createUser(user)
-                viewModel.user.observe(this, Observer {
-                    if (it.status == Status.SUCCESS) {
+                viewModel.userProfile.observe(this, Observer {
+                    if (it.status == Resource.Status.SUCCESS) {
                         //guarda id
                         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                         prefs.putString("provider", "Local")
                         prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
                         prefs.putString("email", it.data?.email.toString())
                         prefs.apply()
-                        showSurvey()
-                    } else if (it.status == Status.ERROR) {
+                        //showSurvey()
+                        showHome()
+                    } else if (it.status == Resource.Status.ERROR) {
+                        it.status = Resource.Status.LOADING
                         showErrorField(3)
                         //Toast.makeText(this, "ERROR!", Toast.LENGTH_LONG).show()
                     }
@@ -357,6 +362,18 @@ class CrearPerfilActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.create()
         dialog.show()
+    }
+
+    /** Function showHome
+     *
+     *  Funció encarregada de canviar a l'activitat principal.
+     *
+     *  @author Albert Miñana Montecino i Adrià Espinola Garcia
+     */
+    private fun showHome(){
+        val homeIntent = Intent(this, MainActivity::class.java)
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(homeIntent)
     }
 
 }
