@@ -43,18 +43,18 @@ data class UserProfile(
         fun DocumentSnapshot.toUserProfile(): UserProfile? {
             try {
                 val provider = getString("provider")!!
-                val uid = getString("uid")!!
-                val password = getString("password")!!
+                val uid = getString("uid")
+                val password = getString("password")
                 val firstname = getString("firstname")!!
                 val lastname = getString("lastname")!!
-                val phone = getString("phone")!!
-                val birthday = getString("birthday")!!
-                val gender = getString("gender")!!
+                val phone = getString("phone")
+                val birthday = getString("birthday")
+                val gender = getString("gender")
                 /* val ArrayList<String> productsobtained = get("productsobtained")!!
                 val servicesobtained = get("servicesobtained")!!
                 val productsgiven = get("productsgiven")!!
                 val servicesgiven = get("servicesgiven")!! */
-                val aptitudes = getString("aptitudes")!!
+                val aptitudes = getString("aptitudes")
                 return UserProfile(id, provider, uid, password, firstname, lastname, phone, birthday, gender, aptitudes)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
