@@ -1,17 +1,13 @@
 package cat.fib.sharecommunity
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.UserViewModel
 import kotlinx.android.synthetic.main.activity_preferences.*
-import cat.fib.sharecommunity.data.models.User
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Classe Activty Qüestionari Inicial
@@ -23,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class PreferencesActivity : AppCompatActivity() {
-
+/*
     private val viewModel by viewModels<UserViewModel>()
 
     private var identificadorUsuari: String? = null   // Identificador de l'usuari
@@ -150,7 +146,7 @@ class PreferencesActivity : AppCompatActivity() {
 
       */
     }
-
+*/
     /** Function validateExperience
      *
      *  Funció que comprova si s'ha seleccionat un radioButton d'experiència.
@@ -246,4 +242,5 @@ class PreferencesActivity : AppCompatActivity() {
         else textViewCategories?.setError(null)
         return categories
     }
+
 }

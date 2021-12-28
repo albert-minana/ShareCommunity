@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/nav_programs"
         android:name="cat.fib.sharecommunity.ui.CercarFiltrarProgramFragment"
-        android:label="@string/text_programs" />
+        android:label="text_programs" />
     <fragment
         android:id="@+id/nav_predefinedroutine"
         android:name="cat.fib.sharecommunity.ui.CercarFiltrarRutinaPredefinidaFragment"
@@ -36,6 +36,6 @@
     <fragment
         android:id="@+id/nav_collections"
         android:name="cat.fib.sharecommunity.ui.CercarFiltrarCollectionFragment"
-        android:label="@string/Collections" />
+        android:label="Collections" />
 
 </navigation>

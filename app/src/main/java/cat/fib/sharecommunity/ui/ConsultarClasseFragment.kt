@@ -10,11 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import cat.fib.sharecommunity.data.models.Class
 import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.data.api.Configuration
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.ClassViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +26,7 @@ private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
  */
 @AndroidEntryPoint
 class ConsultarClasseFragment : Fragment() {
-
+/*
     private val viewModel by viewModels<ClassViewModel>()    // ViewModel de la classe
 
     private var nomIdentificadorClasse: String? = null  // Nom identificador de la classe
@@ -172,5 +168,5 @@ class ConsultarClasseFragment : Fragment() {
         contingutDuracioClasse.text = "15 minuts"
         contingutCategoriaClasse.text = "Estiraments"
     }
-
+*/
 }

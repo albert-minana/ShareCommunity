@@ -25,7 +25,7 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold|italic"
-            app:icon="@drawable/ic_predefinedroutines"
+            app:icon="@drawable/ic_menu_gallery"
             app:iconGravity="start"
             app:iconSize="50dp" />
 
@@ -40,7 +40,7 @@
             android:text="@string/serveis"
             android:textSize="30sp"
             android:textStyle="bold|italic"
-            app:icon="@drawable/ic_exercises"
+            app:icon="@drawable/ic_menu_gallery"
             app:iconSize="50dp" />
 
         <Space
@@ -54,7 +54,7 @@
             android:text="@string/comunitat"
             android:textSize="30sp"
             android:textStyle="bold|italic"
-            app:icon="@drawable/ic_classes"
+            app:icon="@drawable/ic_menu_gallery"
             app:iconSize="50dp" />
 
         <TextView

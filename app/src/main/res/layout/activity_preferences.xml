@@ -65,11 +65,11 @@
                         android:id="@+id/textViewExperiencia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Experiència_Esportiva"
-                        android:textSize="16sp"
-                        app:errorEnabled="true"
                         android:clickable="true"
-                        android:focusableInTouchMode="true"/>
+                        android:focusableInTouchMode="true"
+                        android:text="Experiència_Esportiva"
+                        android:textSize="16sp"
+                        app:errorEnabled="true" />
 
                     <RadioGroup
                         android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:onClick="validateExperience"
-                            android:text="@string/Menys_6_Mesos"
+                            android:text="Menys de 6 mesos"
                             android:textSize="16sp" />
 
                         <RadioButton
@@ -88,7 +88,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:onClick="validateExperience"
-                            android:text="@string/Entre_6_Mesos_2_Anys"
+                            android:text="Entre 6 mesos i 2 anys"
                             android:textSize="16sp" />
 
                         <RadioButton
@@ -96,7 +96,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:onClick="validateExperience"
-                            android:text="@string/Més_2Anys"
+                            android:text="Més de dos anys"
                             android:textSize="16sp" />
 
                     </RadioGroup>
@@ -117,11 +117,11 @@
                         android:id="@+id/textViewCategories"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/CategoriesInterès"
-                        android:textSize="16sp"
-                        app:errorEnabled="true"
                         android:clickable="true"
-                        android:focusableInTouchMode="true"/>
+                        android:focusableInTouchMode="true"
+                        android:text="CategoriesInterès"
+                        android:textSize="16sp"
+                        app:errorEnabled="true" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -140,7 +140,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateCategories"
-                                android:text="@string/Força"
+                                android:text="Força"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -148,7 +148,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateCategories"
-                                android:text="@string/Ioga"
+                                android:text="Ioga"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -156,7 +156,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateCategories"
-                                android:text="@string/Rehabilitació"
+                                android:text="Rehabilitació"
                                 android:textSize="16sp" />
 
                         </LinearLayout>
@@ -172,7 +172,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateCategories"
-                                android:text="@string/Càrdio"
+                                android:text="Càrdio"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -180,7 +180,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateCategories"
-                                android:text="@string/Estiraments"
+                                android:text="Estiraments"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -188,7 +188,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateCategories"
-                                android:text="@string/Pilates"
+                                android:text="Pilates"
                                 android:textSize="16sp" />
 
                         </LinearLayout>
@@ -211,11 +211,11 @@
                         android:id="@+id/textViewObjectius"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Objectiu"
-                        android:textSize="16sp"
-                        app:errorEnabled="true"
                         android:clickable="true"
-                        android:focusableInTouchMode="true"/>
+                        android:focusableInTouchMode="true"
+                        android:text="Objectiu"
+                        android:textSize="16sp"
+                        app:errorEnabled="true" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -234,7 +234,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateObjectives"
-                                android:text="@string/Salut"
+                                android:text="Salut"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -242,7 +242,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateObjectives"
-                                android:text="@string/Pèrdua_Pes"
+                                android:text="Pèrdua_Pes"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -250,7 +250,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateObjectives"
-                                android:text="@string/Resistència"
+                                android:text="Resistència"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -258,7 +258,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateObjectives"
-                                android:text="@string/Agilitat"
+                                android:text="Agilitat"
                                 android:textSize="16sp" />
 
                         </LinearLayout>
@@ -274,7 +274,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateObjectives"
-                                android:text="@string/Força"
+                                android:text="Força"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -282,7 +282,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateObjectives"
-                                android:text="@string/Flexibilitat"
+                                android:text="Flexibilitat"
                                 android:textSize="16sp" />
 
                             <CheckBox
@@ -290,7 +290,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="validateObjectives"
-                                android:text="@string/Recuperació"
+                                android:text="Recuperació"
                                 android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>

@@ -13,11 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.data.models.HealthData
-import cat.fib.sharecommunity.data.models.User
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.HealthDataViewModel
-import cat.fib.sharecommunity.viewmodels.UserViewModel
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.LegendRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -32,19 +27,19 @@ import kotlinx.android.synthetic.main.fragment_user.*
  */
 @AndroidEntryPoint
 class PhysicalFragment : Fragment(R.layout.fragment_physical) {
-
+/*
     private val viewModel by viewModels<UserViewModel>()
     private val viewModelHealth by viewModels<HealthDataViewModel>()
 
     private var identificadorUsuari: String? = null     // Identificador de l'usuari
     private var user: User? = null                      // Model de l'usuari
-
+*/
     lateinit var weight: TextView
     lateinit var height: TextView
     lateinit var imc: TextView
     lateinit var igc: TextView
     lateinit var botoActualitzarPerfil: Button
-
+/*
     /** Function onCreate
      *
      *  Funció encarregada de crear el fragment
@@ -163,7 +158,7 @@ class PhysicalFragment : Fragment(R.layout.fragment_physical) {
             }
         })
    }
-
+*/
    /** Function validateWeight
     *
     *  Funció que comprova si el camp Weight és correcte.

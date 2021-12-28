@@ -11,13 +11,10 @@ import android.widget.RadioButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
-import cat.fib.sharecommunity.data.models.User
 import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.dataclasses.UserProfile
 import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
-import cat.fib.sharecommunity.utils.Status
 import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
-import cat.fib.sharecommunity.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_crear_perfil.*
 import java.time.LocalDate

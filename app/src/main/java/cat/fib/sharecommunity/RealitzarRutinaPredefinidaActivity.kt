@@ -10,10 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
-import cat.fib.sharecommunity.data.models.PredefinedRoutine
 import cat.fib.sharecommunity.ui.RealitzarRutinaPredefinidaFragment
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.PredefinedRoutineViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // Paràmetres d'inicialització de l'Activity
@@ -28,7 +25,7 @@ private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
  */
 @AndroidEntryPoint
 class RealitzarRutinaPredefinidaActivity : AppCompatActivity() {
-
+/*
     private val viewModel by viewModels<PredefinedRoutineViewModel>()   // ViewModel de la rutina predefinida
 
     private var identificadorRutinaPredefinida: String? = null      // Identificador de la rutina predefinida
@@ -161,4 +158,6 @@ class RealitzarRutinaPredefinidaActivity : AppCompatActivity() {
     public fun currentActivityIsExercise(): Boolean {
         return (posicio!! < rutinaPredefinida!!.exercises.size)
     }
+
+ */
 }

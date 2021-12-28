@@ -16,27 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCommunity">
         <activity android:name=".RealitzarRutinaPredefinidaActivity"></activity>
-        <activity android:name=".ConsultarRutinaPredefinidaActivity">
-            android:parentActivityName=".MainActivity">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity android:name=".ConsultarProgramaActivity">
-            android:parentActivityName=".MainActivity">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity android:name=".ConsultarColeccioActivity">
-            android:parentActivityName=".MainActivity">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
         <activity android:name=".CrearPerfilActivity">
             android:parentActivityName=".AuthenticationProviders">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -60,13 +39,6 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
 
-        </activity>
-        <activity android:name=".ConsultarExerciciActivity">
-            android:parentActivityName=".MainActivity">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
         <activity android:name=".PreferencesActivity" />
         <activity

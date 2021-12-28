@@ -50,8 +50,8 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-                    android:text="@string/DadesFísiques"
-                    app:icon="@drawable/ic_profile_physicals"
+                    android:text="DadesFísiques"
+                    app:icon="@drawable/ic_menu_gallery"
                     app:iconGravity="top" />
 
                 <Button
@@ -61,8 +61,8 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-                    android:text="@string/DadesEsportives"
-                    app:icon="@drawable/ic_profile_sport"
+                    android:text="DadesEsportives"
+                    app:icon="@drawable/ic_menu_gallery"
                     app:iconGravity="top" />
             </LinearLayout>
 

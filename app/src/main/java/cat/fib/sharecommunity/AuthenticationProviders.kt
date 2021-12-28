@@ -6,16 +6,12 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import androidx.activity.viewModels
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import cat.fib.sharecommunity.data.models.User
 import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.dataclasses.UserProfile
-import cat.fib.sharecommunity.utils.Status
 import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
-import cat.fib.sharecommunity.viewmodels.UserViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException

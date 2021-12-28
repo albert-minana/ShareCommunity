@@ -13,11 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.fib.sharecommunity.CardViewItem
 import cat.fib.sharecommunity.ConsultarClasseActivity
-import cat.fib.sharecommunity.data.models.Class
 import cat.fib.sharecommunity.R
 import cat.fib.sharecommunity.RecyclerViewAdapter
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.ClassViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // Paràmetres d'inicialització del Fragment
@@ -32,7 +29,7 @@ private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
  */
 @AndroidEntryPoint
 class CercarFiltrarClasseFragment : Fragment(), RecyclerViewAdapter.OnItemClickListener {
-
+/*
     private val viewModel by viewModels<ClassViewModel>()       // ViewModel de les classes
 
     private var llistatClasses: List<Class>? = null             // Llistat del model classe
@@ -97,7 +94,7 @@ class CercarFiltrarClasseFragment : Fragment(), RecyclerViewAdapter.OnItemClickL
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
     }
-
+*/
     /** Function onItemClick
      *
      *  Funció encarregada de configurar el comportament del clic en un CardViewItem del RecyclerView
@@ -106,10 +103,12 @@ class CercarFiltrarClasseFragment : Fragment(), RecyclerViewAdapter.OnItemClickL
      *  @author Albert Miñana Montecino
      */
     override fun onItemClick(position: Int) {
+        /*
         val nomIdentificadorClasse = llistatClasses!![position].name
         val intent = Intent(activity, ConsultarClasseActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, nomIdentificadorClasse)
         }
         startActivity(intent)
+         */
     }
 }

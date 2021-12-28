@@ -15,8 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.AuthenticationProviders
 import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Fragment Profile
@@ -28,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
-
+/*
     private val viewModel by viewModels<UserViewModel>()
 
     private var identificadorUsuari: String? = null   // Identificador de l'usuari
@@ -148,5 +146,5 @@ class ProfileFragment : Fragment() {
         dialog.create()
         dialog.show()
     }
-
+*/
 }

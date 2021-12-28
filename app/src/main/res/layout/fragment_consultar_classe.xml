@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_entrenador"
+                android:text="text_entrenador"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_entrenador"
+                android:text="text_entrenador"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -107,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_àreatreball"
+                android:text="text_àreatreball"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_àreatreball"
+                android:text="text_àreatreball"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -169,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_dificultat"
+                android:text="text_dificultat"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -178,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_dificultat"
+                android:text="text_dificultat"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -200,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_duració"
+                android:text="text_duració"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_duració"
+                android:text="text_duració"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -231,7 +231,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_categoria"
+                android:text="text_categoria"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -240,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/text_categoria"
+                android:text="text_categoria"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

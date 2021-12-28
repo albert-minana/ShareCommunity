@@ -11,10 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.R
 import cat.fib.sharecommunity.RealitzarRutinaPredefinidaActivity
-import cat.fib.sharecommunity.data.api.Configuration
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.ClassViewModel
-import cat.fib.sharecommunity.viewmodels.ExerciseViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class RealitzarRutinaPredefinidaFragment : Fragment() {
-
+/*
     private var nomIdentificadorActivitat: String? = null   // Nom identificador de l'activitat
     private var activitatEsExercici: Boolean? = null        // Indica cert si l'activitat és un exercici, fals si l'activitat és una classe
 
@@ -127,4 +123,6 @@ class RealitzarRutinaPredefinidaFragment : Fragment() {
         //videotutorialExercici.start()
         videoActivitat.seekTo(1)
     }
+
+ */
 }

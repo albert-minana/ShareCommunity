@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="87dp"
                     android:contentDescription="@string/Logo"
-                    app:srcCompat="@drawable/ic_vector_sharecommunity_text_blue" />
+                    app:srcCompat="@drawable/ic_vector_sharecommunity_text" />
 
                 <ImageView
                     android:id="@+id/imageView2"

@@ -14,10 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.MainActivity
 import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.data.models.User
 import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
-import cat.fib.sharecommunity.utils.Status
-import cat.fib.sharecommunity.viewmodels.UserViewModel
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textfield.TextInputLayout.END_ICON_NONE
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,13 +31,13 @@ import java.time.format.DateTimeFormatter
  */
 @AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
-
+/*
     private val viewModel by viewModels<UserViewModel>()
 
     private var identificadorUsuari: String? = null     // Identificador de l'usuari
     private var proveidor: String? = null               // Proveïdor de l'usuari
     private var user: User? = null                      // Model de l'usuari
-
+*/
     lateinit var nom: TextView
     lateinit var cognoms: TextView
     lateinit var correu: TextView
@@ -53,7 +50,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     lateinit var botoActualitzarPerfil: Button
     lateinit var layaoutContrasenya: TextInputLayout
 
-
+/*
     /** Function onCreate
      *
      *  Funció encarregada de crear el fragment
@@ -218,6 +215,8 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             }
         }
     }
+
+ */
     /** Function validateName
      *
      *  Funció que comprova si el camp Nom és correcte.

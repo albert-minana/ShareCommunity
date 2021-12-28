@@ -12,8 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cat.fib.sharecommunity.R
 import cat.fib.sharecommunity.ui.CercarFiltrarClasseFragment
-import cat.fib.sharecommunity.ui.CercarFiltrarExerciciFragment
-import cat.fib.sharecommunity.ui.CercarFiltrarRutinaPredefinidaFragment
 
 class HomeFragment : Fragment() {
 
@@ -52,7 +50,7 @@ class HomeFragment : Fragment() {
     private fun setUpRutinesButton() {
         botoRutines.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.nav_host_fragment, CercarFiltrarRutinaPredefinidaFragment())
+                replace(R.id.nav_host_fragment, CercarFiltrarClasseFragment())
                 addToBackStack(null)
                 commit()
             }
@@ -62,7 +60,7 @@ class HomeFragment : Fragment() {
     private fun setUpExercicisButton() {
         botoExercicis.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.nav_host_fragment, CercarFiltrarExerciciFragment())
+                replace(R.id.nav_host_fragment, CercarFiltrarClasseFragment())
                 addToBackStack(null)
                 commit()
             }
