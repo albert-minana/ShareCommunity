@@ -16,16 +16,15 @@ class Product(
         var ubication: String,
         var state: String,
         var type: String,
-        var photo: ImageView?
+        var photo: String?
 ) : Parcelable {
 
     constructor(id: String,
                 name: String,
                 description: String,
                 ubication: String,
-                state: String,
                 type: String,
-    ) : this(id, name, description, ubication, state, type,null)
+    ) : this(id, name, description, ubication, "disponible", type, null)
 
     companion object {
         fun DocumentSnapshot.toProduct(): Product? {
@@ -35,7 +34,7 @@ class Product(
                 val ubication = getString("ubication")!!
                 val state = getString("state")!!
                 val type = getString("type")!!
-                val photo = ImageView(null)
+                val photo = getString("photo")
 
                 return Product(id, name, description, ubication, state, type, photo)
             } catch (e: Exception) {

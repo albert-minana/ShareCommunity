@@ -69,14 +69,14 @@ class CrearPerfilActivity : AppCompatActivity() {
         setupSendButton()
     }
 
-        /** Function setupSendButton
+    /** Function setupSendButton
      *
      *  Funció que comprova si els camps són correctes per crear un usuari.
      *
      *  @author Adrià Espinola Garcia, Albert Miñana Montecino, Daniel Cárdenas Rafael
      */
     fun setupSendButton() {
-        ActualitzarUsuariButton.setOnClickListener {
+        CrearProducteButton.setOnClickListener {
             val validateName = validateName()
             val validateLastName = validateLastName()
             val validateEmail = validateEmail()

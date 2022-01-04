@@ -51,7 +51,7 @@
             android:id="@+id/button13"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:text="@string/comunitat"
+            android:text="@string/el_meu_espai"
             android:textSize="30sp"
             android:textStyle="bold|italic"
             app:icon="@drawable/ic_menu_gallery"

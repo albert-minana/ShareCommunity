@@ -30,7 +30,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:baselineAlignBottom="false"
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:fontFamily="sans-serif-black"
-                    android:text="@string/Títol"
+                    android:text="@string/Crear_Producte"
                     android:textAlignment="center"
                     android:textColor="@color/blue_dark"
                     android:textSize="36sp" />
@@ -61,96 +61,38 @@
                         android:background="#00FFFFFF"
                         android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZÀÁÈÉÌÍÒÓÙÏÜ abcdefghijklmnñopqrstuvwxyzàáèéìíòóùúïü"
                         android:ems="10"
-                        android:hint="@string/Nom"
-                        android:inputType="textPersonName" />
+                        android:hint="@string/Nom_Producte" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutCognoms"
+                    android:id="@+id/textInputLayoutDescripcio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true">
 
                     <EditText
-                        android:id="@+id/Cognoms"
+                        android:id="@+id/Descripcio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00FFFFFF"
-                        android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZÀÁÈÉÌÍÒÓÙÏÜ abcdefghijklmnñopqrstuvwxyzàáèéìíòóùúïü"
                         android:ems="10"
-                        android:hint="@string/Cognoms"
-                        android:inputType="textPersonName" />
+                        android:hint="@string/Descripció" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutCorreuElectronic"
+                    android:id="@+id/textInputLayoutUbicacio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true">
 
                     <EditText
-                        android:id="@+id/CorreuElectronic"
+                        android:id="@+id/Ubicacio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00FFFFFF"
                         android:ems="10"
-                        android:hint="@string/Email"
-                        android:inputType="textEmailAddress" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="@string/Provincia" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true"
-                    app:passwordToggleEnabled="true"
-                    app:errorIconDrawable="@null">
-
-                    <EditText
-                        android:id="@+id/Contrasenya"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:ems="10"
-                        android:hint="@string/Password"
-                        android:inputType="textPassword" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutTelefon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
-
-                    <EditText
-                        android:id="@+id/Telefon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:ems="10"
-                        android:hint="@string/Phone"
-                        android:inputType="phone"
-                        android:phoneNumber="false" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutDataNaixement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
-
-                    <EditText
-                        android:id="@+id/DataNaixement"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="true"
-                        android:datePickerMode="calendar"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:hint="@string/Data_Naixement"
-                        android:inputType="date"
-                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -158,11 +100,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="17dp"
-                    android:text="@string/Sexe"
-                    android:textSize="16dp" />
+                    android:text="@string/Tipus_Producte"
+                    android:textSize="16dp"
+                    />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutSexe"
+                    android:id="@+id/textInputLayoutType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-22dp"
@@ -174,7 +117,7 @@
                     app:hintEnabled="false">
 
                     <RadioGroup
-                        android:id="@+id/SexeSelection"
+                        android:id="@+id/TypeSelection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hapticFeedbackEnabled="false"
@@ -182,35 +125,80 @@
                         android:transitionGroup="false">
 
                         <RadioButton
-                            android:id="@+id/Sexe_Home"
+                            android:id="@+id/Tipus_Roba"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.33"
-                            android:text="@string/Sexe_home"
+                            android:layout_weight="0.35"
+                            android:text="@string/Tipus_Roba"
                             android:textColor="@color/radiobuttonstate"
                             android:textSize="16sp" />
 
                         <RadioButton
-                            android:id="@+id/Sexe_Dona"
+                            android:id="@+id/Tipus_Material"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.33"
-                            android:text="@string/Sexe_Dona"
+                            android:text="@string/Tipus_Material"
                             android:textColor="@color/radiobuttonstate"
                             android:textSize="16sp" />
 
                         <RadioButton
-                            android:id="@+id/Sexe_Altre"
+                            android:id="@+id/Tipus_Joguines"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.33"
-                            android:text="@string/Sexe_Altre"
+                            android:layout_weight="0.32"
+                            android:text="@string/Tipus_Joguines"
+                            android:textColor="@color/radiobuttonstate"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/Tipus_Altre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.35"
+                            android:text="@string/Tipus_Altre"
                             android:textColor="@color/radiobuttonstate"
                             android:textSize="16sp"
                             app:errorEnabled="true" />
 
                     </RadioGroup>
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutFoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <TextView
+                    android:id="@+id/headerTxt"
+                    android:text="Selecciona una imatge"
+                    android:background="#00FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"/>
+
+                    <ImageView
+                        android:id="@+id/mImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="Our Image"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Fer fotografia"
+                        android:id="@+id/btnCapture"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Inserir fotografia"
+                        android:id="@+id/btnChoose"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -224,7 +212,7 @@
                     android:id="@+id/CrearProducteButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Text_Botó"
+                    android:text="@string/Text_Botó_Crear_Producte"
                     android:textAlignment="center"
                     android:textStyle="bold" />
             </LinearLayout>

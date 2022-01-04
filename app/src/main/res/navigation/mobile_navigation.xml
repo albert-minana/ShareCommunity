@@ -21,15 +21,15 @@
         android:name="cat.fib.sharecommunity.ui.CercarFiltrarProgramFragment"
         android:label="text_programs" />
     <fragment
-        android:id="@+id/nav_predefinedroutine"
+        android:id="@+id/nav_productes"
         android:name="cat.fib.sharecommunity.ui.CercarFiltrarRutinaPredefinidaFragment"
         android:label="@string/productes" />
     <fragment
-        android:id="@+id/nav_exercises"
+        android:id="@+id/nav_serveis"
         android:name="cat.fib.sharecommunity.ui.CercarFiltrarExerciciFragment"
         android:label="@string/serveis" />
     <fragment
-        android:id="@+id/nav_classes"
+        android:id="@+id/nav_espai"
         android:name="cat.fib.sharecommunity.ui.CercarFiltrarClasseFragment"
         android:label="@string/comunitat" />
 

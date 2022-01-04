@@ -71,5 +71,19 @@
     <string name="serveis">Serveis</string>
     <string name="comunitat">Comunitat</string>
     <string name="benvinguts">Benvinguts a ShareCommunity!</string>
+    <string name="el_meu_espai">El meu espai</string>
+    <string name="Crear_Producte">Crea el teu producte</string>
+    <string name="Nom_Producte">Nom producte</string>
+    <string name="Text_Botó_Crear_Producte">Crear producte</string>
+    <string name="Tipus">Type</string>
+    <string name="Tipus_Producte">Tipus</string>
+    <string name="Tipus_Roba">Roba</string>
+    <string name="Tipus_Material">Material</string>
+    <string name="Tipus_Joguines">Joguines</string>
+    <string name="Tipus_Altre">Altre</string>
+    <string name="Descripció">Descripció</string>
+    <string name="Ubicacio">Ubicació</string>
+    <string name="Provincia">Província</string>
+    <string name="Botón_Foto">Insereix imatge</string>
 
 </resources>

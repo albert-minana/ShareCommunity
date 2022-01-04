@@ -10,25 +10,16 @@
             android:title="@string/menu_home" />
 
         <item
-            android:id="@+id/nav_programs"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="text_programs" />
-        <item
-            android:id="@+id/nav_collections"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Collections" />
-
-        <item
-            android:id="@+id/nav_predefinedroutine"
+            android:id="@+id/nav_productes"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/productes" />
 
         <item
-            android:id="@+id/nav_classes"
+            android:id="@+id/nav_espai"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/comunitat" />
+            android:title="@string/el_meu_espai" />
         <item
-            android:id="@+id/nav_exercises"
+            android:id="@+id/nav_serveis"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/serveis" />
 

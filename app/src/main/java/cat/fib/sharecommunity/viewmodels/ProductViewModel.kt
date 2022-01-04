@@ -12,12 +12,19 @@ import kotlinx.coroutines.launch
 class ProductViewModel : ViewModel() {
     private val _product = MutableLiveData<Resource<Product>>()
     val product: LiveData<Resource<Product>> = _product
+    var productes: LiveData<Resource<List<Product>>>? = null
 
-    /* fun getProduct(id: String) {
+     fun getProduct(id: String) {
         viewModelScope.launch {
             _product.value = FirebaseProductService.getProductData(id)
         }
-    } */
+    }
+
+    fun getProductes() {
+        viewModelScope.launch {
+            _product.value = FirebaseProductService.getProductes()
+        }
+    }
 
     fun createProduct(product: Product) {
         viewModelScope.launch {

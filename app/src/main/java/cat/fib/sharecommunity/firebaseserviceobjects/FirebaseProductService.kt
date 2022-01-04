@@ -24,6 +24,22 @@ object FirebaseProductService {
         }
     }
 
+    suspend fun getProductes(): Resource<Product>? {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("products")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        Log.e(TAG, "${document.id} => ${document.data}")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.e(TAG, "Error getting products: ", exception)
+                }
+        return null
+    }
+
+
     suspend fun createProduct(product: Product): Resource<Product>? {
         val db = FirebaseFirestore.getInstance()
         try {
