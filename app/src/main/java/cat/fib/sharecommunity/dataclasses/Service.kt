@@ -9,14 +9,16 @@ import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-class Product(
+class Service(
         var id: String,
         var name: String,
         var description: String,
         var ubication: String,
         var state: String,
         var type: String,
-        var photo: String?
+        var data_ini: String,
+        var data_fi: String,
+    //var photo: String?
 ) : Parcelable {
 
     constructor(id: String,
@@ -24,27 +26,30 @@ class Product(
                 description: String,
                 ubication: String,
                 type: String,
-    ) : this(id, name, description, ubication, "disponible", type, null)
+                var data_ini: String,
+                var data_fi: String,
+    ) : this(id, name, description, ubication, "disponible", data_ini, data_fi)
 
     companion object {
-        fun DocumentSnapshot.toProduct(): Product? {
+        fun DocumentSnapshot.toService(): Service? {
             try {
                 val name = getString("name")!!
                 val description = getString("description")!!
                 val ubication = getString("ubication")!!
                 val state = getString("state")!!
                 val type = getString("type")!!
-                val photo = getString("photo")
+                val data_ini = getString("data_ini")!!
+                val data_fi = getString("data_fi")!!
 
-                return Product(id, name, description, ubication, state, type, photo)
+                return Service(id, name, description, ubication, state, type, dat_ini, data_fi)
             } catch (e: Exception) {
-                Log.e(TAG, "Error converting product", e)
-                FirebaseCrashlytics.getInstance().log("Error converting product")
+                Log.e(TAG, "Error converting service", e)
+                FirebaseCrashlytics.getInstance().log("Error converting service")
                 FirebaseCrashlytics.getInstance().setCustomKey("id", id)
                 FirebaseCrashlytics.getInstance().recordException(e)
                 return null
             }
         }
-        private const val TAG = "Product"
+        private const val TAG = "Service"
     }
-}Product
+}Service
