@@ -10,18 +10,18 @@
             android:title="@string/menu_home" />
 
         <item
-            android:id="@+id/nav_productes"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_products"
+            android:icon="@drawable/ic_menu_products"
             android:title="@string/productes" />
 
         <item
-            android:id="@+id/nav_espai"
+            android:id="@+id/nav_services"
+            android:icon="@drawable/ic_menu_service"
+            android:title="@string/serveis" />
+        <item
+            android:id="@+id/nav_personalspace"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/el_meu_espai" />
-        <item
-            android:id="@+id/nav_serveis"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/serveis" />
 
 
         <item

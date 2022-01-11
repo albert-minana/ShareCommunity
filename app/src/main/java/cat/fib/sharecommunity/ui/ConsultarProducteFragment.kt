@@ -1,6 +1,5 @@
 package cat.fib.sharecommunity.ui
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +14,11 @@ import cat.fib.sharecommunity.R
 import cat.fib.sharecommunity.dataclasses.Product
 import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.viewmodels.ProductViewModel
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 // Paràmetres d'inicialització del Fragment
-private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
+private const val EXTRA_MESSAGE_1 = "cat.fib.sharecommunity.MESSAGE1"
+private const val EXTRA_MESSAGE_2 = "cat.fib.sharecommunity.MESSAGE2"
 
 /** Fragment ConsultarProducte
  *
@@ -33,7 +32,8 @@ class ConsultarProducteFragment : Fragment() {
 
     private val viewModel by viewModels<ProductViewModel>()    // ViewModel del producte
 
-    private var nomIdentificadorProducte: String? = null  // Nom identificador del producte
+    private var idProduct: String? = null  // ID del producte
+    private var userEmailProduct: String? = null  // userEmail del producte
 
     lateinit var imatgeProducte: ImageView              // ImageView amb la imatge del producte
     lateinit var nomProducte: TextView                  // TextView amb el nom del producte
@@ -41,6 +41,8 @@ class ConsultarProducteFragment : Fragment() {
     lateinit var contingutUbicacioProducte: TextView    // TextView amb la ubicació del producte
     lateinit var contingutEstatProducte: TextView       // TextView amb l'estat del producte
     lateinit var contingutTipusProducte: TextView       // TextView amb el tipus del producte
+    lateinit var contingutDataPublicacio: TextView      // TextView amb la data de publicació del producte
+    lateinit var contingutEmailUsuari: TextView         // TextView amb l'email de l'usuari del producte
 
     /** Function onCreate
      *
@@ -51,7 +53,8 @@ class ConsultarProducteFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        nomIdentificadorProducte = activity?.intent?.getStringExtra(EXTRA_MESSAGE)
+        idProduct = activity?.intent?.getStringExtra(EXTRA_MESSAGE_1)
+        userEmailProduct = activity?.intent?.getStringExtra(EXTRA_MESSAGE_2)
     }
 
     /** Function onCreateView
@@ -73,9 +76,11 @@ class ConsultarProducteFragment : Fragment() {
         contingutUbicacioProducte = view.findViewById(R.id.contingutUbicacioProducte)
         contingutEstatProducte = view.findViewById(R.id.contingutEstatProducte)
         contingutTipusProducte = view.findViewById(R.id.contingutTipusProducte)
+        contingutDataPublicacio = view.findViewById(R.id.contingutDataPublicacio)
+        contingutEmailUsuari = view.findViewById(R.id.contingutEmailUsuari)
 
-        nomIdentificadorProducte?.let {
-            viewModel.getProduct(it)
+        idProduct?.let {
+            viewModel.getProduct(userEmailProduct!!, it)
         }
 
         viewModel.product?.observe(viewLifecycleOwner, Observer {
@@ -102,6 +107,8 @@ class ConsultarProducteFragment : Fragment() {
         contingutUbicacioProducte.text = productData?.ubication.toString()
         contingutEstatProducte.text = stateName(productData?.state.toString())
         contingutTipusProducte.text = typeName(productData?.type.toString())
+        contingutDataPublicacio.text = productData?.publishDate.toString()
+        contingutEmailUsuari.text = productData?.userEmail.toString()
     }
 
     private fun stateName(state: String): String? {

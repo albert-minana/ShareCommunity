@@ -21,7 +21,8 @@ import cat.fib.sharecommunity.viewmodels.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // Paràmetres d'inicialització del Fragment
-private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
+private const val EXTRA_MESSAGE_1 = "cat.fib.sharecommunity.MESSAGE1"
+private const val EXTRA_MESSAGE_2 = "cat.fib.sharecommunity.MESSAGE2"
 
 /** Fragment CercarFiltrarProducte
  *
@@ -35,7 +36,7 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
 
     private val viewModel by viewModels<ProductViewModel>()       // ViewModel dels productes
 
-    private var llistatProductes: List<Product>? = null             // Llistat del model producte
+    private var llistatProductes: ArrayList<Product>? = null             // Llistat del model producte
 
     lateinit var recyclerView: RecyclerView                     // RecyclerView de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
     lateinit var list: ArrayList<CardViewItem>                  // Llistat de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
@@ -67,8 +68,8 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
         recyclerView = view.findViewById(R.id.recycler_view)
         list = ArrayList<CardViewItem>()
 
-        viewModel.getProductes()
-        viewModel.productes?.observe(viewLifecycleOwner, Observer {
+        viewModel.getAvailableProducts()
+        viewModel.products?.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
                 llistatProductes = it.data
                 setContent()
@@ -106,10 +107,11 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
      *  @author Daniel Cárdenas Rafael
      */
     override fun onItemClick(position: Int) {
-
-        val nomIdentificadorProducte = llistatProductes!![position].name
+        val idProduct = llistatProductes!![position].id
+        val userEmailProduct = llistatProductes!![position].userEmail
         val intent = Intent(activity, ConsultarProducteActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, nomIdentificadorProducte)
+            putExtra(EXTRA_MESSAGE_1, idProduct)
+            putExtra(EXTRA_MESSAGE_2, userEmailProduct)
         }
         startActivity(intent)
 

@@ -11,6 +11,7 @@ import kotlinx.coroutines.tasks.await
 
 object FirebaseUserProfileService {
     private const val TAG = "FirebaseUserProfileService"
+    //esta función está mal
     suspend fun getUserProfileData(email: String): UserProfile? {
         val db = FirebaseFirestore.getInstance()
         return try {

@@ -30,6 +30,8 @@ import kotlinx.android.synthetic.main.activity_crear_perfil.CrearProducteButton
 import kotlinx.android.synthetic.main.activity_crear_perfil.textInputLayoutNom
 import kotlinx.android.synthetic.main.activity_crear_producte.*
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 /** Classe CrearProducte
  *
@@ -124,21 +126,20 @@ class CrearProducteActivity : AppCompatActivity() {
                     Tipus_Joguines?.isChecked == true -> type = "J"
                     else -> type = "A"
                 }
-                //No sé cómo guardar el id porque el nombre no es el identificador y el id no se saca de ningún sitio
-                val product = Product(id, name, descripcio, ubicacio, type)
+                val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+                val publishDate = sdf.format(Date())
+
+                val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+                val userEmail = prefs.getString("email", null)
+                val product = Product(name, descripcio, ubicacio, type, publishDate, userEmail!!)
                 viewModel.createProduct(product)
                 viewModel.product.observe(this, Observer {
                     if (it.status == Resource.Status.SUCCESS) {
-                        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                        prefs.putString("state", "Disponible")
-                        prefs.apply()
                         showHome()
                     }
                     else if (it.status == Resource.Status.ERROR) {
                         Toast.makeText(this, "ERROR!", Toast.LENGTH_LONG).show()
                     }
-
-
                 })
             }
         }
@@ -209,7 +210,7 @@ class CrearProducteActivity : AppCompatActivity() {
      *  @author Daniel Cárdenas Rafael
      */
     private fun validateType(): Boolean {
-        val TypeNotChecked = (Tipus_Roba?.isChecked == false && Tipus_Material?.isChecked == false && Tipus_Joguines?.isChecked == false && Tipus_Altres?.isChecked == false)
+        val TypeNotChecked = (Tipus_Roba?.isChecked == false && Tipus_Material?.isChecked == false && Tipus_Joguines?.isChecked == false && Tipus_Altre?.isChecked == false)
         if (TypeNotChecked) {
             textInputLayoutType?.setError("El camp no està seleccionat")
             Tipus_Altre?.setError("El camp no està seleccionat")
@@ -225,6 +226,7 @@ class CrearProducteActivity : AppCompatActivity() {
         private fun show(message: String) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
     }
+
     private fun capturePhoto(){
         val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
         if(capturedImage.exists()) {
@@ -242,11 +244,13 @@ class CrearProducteActivity : AppCompatActivity() {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri)
         startActivityForResult(intent, OPERATION_CAPTURE_PHOTO)
     }
+
     private fun openGallery(){
         val intent = Intent("android.intent.action.GET_CONTENT")
         intent.type = "image/*"
         startActivityForResult(intent, OPERATION_CHOOSE_PHOTO)
     }
+
     private fun renderImage(imagePath: String?){
         if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
@@ -256,6 +260,7 @@ class CrearProducteActivity : AppCompatActivity() {
             show("ImagePath is null")
         }
     }
+
     private fun getImagePath(uri: Uri?, selection: String?): String {
         var path: String? = null
         val cursor = contentResolver.query(uri!!, null, selection, null, null )

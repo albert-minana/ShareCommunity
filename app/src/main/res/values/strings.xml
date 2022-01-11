@@ -85,5 +85,7 @@
     <string name="Ubicacio">Ubicació</string>
     <string name="Provincia">Província</string>
     <string name="Botón_Foto">Insereix imatge</string>
+    <string name="DataPublicacio">Data de publicació</string>
+    <string name="EmailUsuari">Email de l\'usuari</string>
 
 </resources>
