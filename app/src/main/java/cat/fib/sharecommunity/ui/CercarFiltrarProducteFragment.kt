@@ -107,11 +107,11 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
      *  @author Daniel Cárdenas Rafael
      */
     override fun onItemClick(position: Int) {
-        val idProduct = llistatProductes!![position].id
-        val userEmailProduct = llistatProductes!![position].userEmail
+        val id = llistatProductes!![position].id
+        val userEmail = llistatProductes!![position].userEmail
         val intent = Intent(activity, ConsultarProducteActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE_1, idProduct)
-            putExtra(EXTRA_MESSAGE_2, userEmailProduct)
+            putExtra(EXTRA_MESSAGE_1, id)
+            putExtra(EXTRA_MESSAGE_2, userEmail)
         }
         startActivity(intent)
 

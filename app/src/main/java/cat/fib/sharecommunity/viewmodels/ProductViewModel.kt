@@ -21,9 +21,9 @@ class ProductViewModel : ViewModel() {
         }
     }
 
-    fun getProduct(userEmail: String, id: String) {
+    fun getProduct(id: String, userEmail: String) {
         viewModelScope.launch {
-            _product.value = FirebaseProductService.getProduct(userEmail, id)
+            _product.value = FirebaseProductService.getProduct(id, userEmail)
         }
     }
 

@@ -32,8 +32,8 @@ class ConsultarProducteFragment : Fragment() {
 
     private val viewModel by viewModels<ProductViewModel>()    // ViewModel del producte
 
-    private var idProduct: String? = null  // ID del producte
-    private var userEmailProduct: String? = null  // userEmail del producte
+    private var idProducte: String? = null              // ID del producte
+    private var userEmailProducte: String? = null       // userEmail del producte
 
     lateinit var imatgeProducte: ImageView              // ImageView amb la imatge del producte
     lateinit var nomProducte: TextView                  // TextView amb el nom del producte
@@ -53,8 +53,8 @@ class ConsultarProducteFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        idProduct = activity?.intent?.getStringExtra(EXTRA_MESSAGE_1)
-        userEmailProduct = activity?.intent?.getStringExtra(EXTRA_MESSAGE_2)
+        idProducte = activity?.intent?.getStringExtra(EXTRA_MESSAGE_1)
+        userEmailProducte = activity?.intent?.getStringExtra(EXTRA_MESSAGE_2)
     }
 
     /** Function onCreateView
@@ -79,8 +79,8 @@ class ConsultarProducteFragment : Fragment() {
         contingutDataPublicacio = view.findViewById(R.id.contingutDataPublicacio)
         contingutEmailUsuari = view.findViewById(R.id.contingutEmailUsuari)
 
-        idProduct?.let {
-            viewModel.getProduct(userEmailProduct!!, it)
+        idProducte?.let {
+            viewModel.getProduct(it, userEmailProducte!!)
         }
 
         viewModel.product?.observe(viewLifecycleOwner, Observer {
