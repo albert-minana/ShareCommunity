@@ -27,7 +27,7 @@ class Product(
                 type: String,
                 publishDate: String,
                 userEmail: String
-    ) : this("0", name, description, ubication, "disponible", type, null, publishDate, userEmail)
+    ) : this("0", name, description, ubication, "Disponible", type, null, publishDate, userEmail)
 
     companion object {
         fun DocumentSnapshot.toProduct(): Product? {

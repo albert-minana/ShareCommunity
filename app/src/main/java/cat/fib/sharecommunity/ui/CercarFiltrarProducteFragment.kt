@@ -72,6 +72,7 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
         viewModel.products?.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
                 llistatProductes = it.data
+                System.out.println(it.data)
                 setContent()
             }
             else if (it.status == Resource.Status.ERROR)

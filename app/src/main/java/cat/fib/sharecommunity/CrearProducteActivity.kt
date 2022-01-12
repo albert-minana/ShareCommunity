@@ -121,10 +121,10 @@ class CrearProducteActivity : AppCompatActivity() {
                 val ubicacio = Ubicacio?.text.toString()
                 var type: String
                 when {
-                    Tipus_Roba?.isChecked == true -> type = "R"
-                    Tipus_Material?.isChecked == true -> type = "M"
-                    Tipus_Joguines?.isChecked == true -> type = "J"
-                    else -> type = "A"
+                    Tipus_Roba?.isChecked == true -> type = "Roba"
+                    Tipus_Material?.isChecked == true -> type = "Material escolar"
+                    Tipus_Joguines?.isChecked == true -> type = "Joguines"
+                    else -> type = "Altre"
                 }
                 val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
                 val publishDate = sdf.format(Date())

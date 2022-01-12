@@ -105,12 +105,12 @@ class ConsultarProducteFragment : Fragment() {
         nomProducte.text = productData?.name.toString()
         contingutDescripcioProducte.text = productData?.description.toString()
         contingutUbicacioProducte.text = productData?.ubication.toString()
-        contingutEstatProducte.text = stateName(productData?.state.toString())
-        contingutTipusProducte.text = typeName(productData?.type.toString())
+        contingutEstatProducte.text = productData?.state.toString()
+        contingutTipusProducte.text = productData?.type.toString()
         contingutDataPublicacio.text = productData?.publishDate.toString()
         contingutEmailUsuari.text = productData?.userEmail.toString()
     }
-
+/*
     private fun stateName(state: String): String? {
         when (state) {
             "D" -> return "Disponible"
@@ -128,7 +128,7 @@ class ConsultarProducteFragment : Fragment() {
             "A" -> return "Altres"
             else -> return null
         }
-    }
+    } */
 
     /** Function setContent
      *

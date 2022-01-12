@@ -72,6 +72,7 @@ object FirebaseProductService {
         return resourceResult
     }
 
+    /*
     suspend fun getAvailableProducts(): Resource<ArrayList<Product>>? {
         lateinit var resourceResult : Resource<ArrayList<Product>>
         val db = FirebaseFirestore.getInstance()
@@ -91,6 +92,26 @@ object FirebaseProductService {
                 FirebaseCrashlytics.getInstance().recordException(exception)
             }
         return resourceResult
+    }
+    */
+
+    suspend fun getAvailableProducts(): Resource<ArrayList<Product>>? {
+        val db = FirebaseFirestore.getInstance()
+        try {
+            //val result = db.collection("users").document("prova@prova.com").collection("products").get().await()
+            val result = db.collectionGroup("products").whereEqualTo("state", "Disponible").get().await()
+            var productList = ArrayList<Product>()
+            for (document in result) {
+                val product = document.toProduct()
+                productList.add(product!!)
+            }
+            return Resource.success(productList)
+        } catch (e: Exception) {
+                Log.e(TAG, "Error getting available products", e)
+                FirebaseCrashlytics.getInstance().log("Error getting available products")
+                FirebaseCrashlytics.getInstance().recordException(e)
+                return Resource.error(e)
+        }
     }
 
     suspend fun updateProduct(product: Product): Resource<Product>? {
