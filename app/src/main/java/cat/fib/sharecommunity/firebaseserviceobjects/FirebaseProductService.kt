@@ -7,6 +7,7 @@ import cat.fib.sharecommunity.dataclasses.Product
 import cat.fib.sharecommunity.dataclasses.Product.Companion.toProduct
 import cat.fib.sharecommunity.dataclasses.Resource
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
@@ -17,7 +18,8 @@ object FirebaseProductService {
     suspend fun createProduct(product: Product): Resource<Product>? {
         val db = FirebaseFirestore.getInstance()
         try {
-            val nproducts = db.collection("users").document(product.userEmail).collection("products").orderBy("id", Query.Direction.DESCENDING).limit(1).get().await().documents.first().toProduct()?.id
+            val nproducts = db.collection("users").document(product.userEmail).collection("products").orderBy(
+                FieldPath.documentId()).limit(1).get().await().documents.first().toProduct()?.id
             var id = 0
             if (nproducts != null) {
                 id = nproducts.toInt() + 1

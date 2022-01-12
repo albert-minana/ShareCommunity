@@ -110,7 +110,16 @@ class MainActivity : AppCompatActivity()  {
         startActivity(authenticationIntent)
     }
 
+    public fun showCreateProduct(view: View) {
+        val createProductIntent = Intent(applicationContext, CrearProducteActivity::class.java)
+        startActivity(createProductIntent)
+    }
 
+    public fun showCreateService(view: View) {
+        //val createProductIntent = Intent(applicationContext, CrearProducteActivity::class.java)
+        //startActivity(createProductIntent)
+
+    }
 
 
 }

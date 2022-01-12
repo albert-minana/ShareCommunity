@@ -87,5 +87,6 @@
     <string name="Botón_Foto">Insereix imatge</string>
     <string name="DataPublicacio">Data de publicació</string>
     <string name="EmailUsuari">Email de l\'usuari</string>
-
+    <string name="producte">Producte</string>
+    <string name="servei">Servei</string>
 </resources>
