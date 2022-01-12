@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_crear_perfil.textInputLayoutNom
 import kotlinx.android.synthetic.main.activity_crear_producte.*
 import java.io.File
 
+
 /** Classe CrearProducte
  *
  *  Classe on es crea un producte amb els camps principals necessaris.

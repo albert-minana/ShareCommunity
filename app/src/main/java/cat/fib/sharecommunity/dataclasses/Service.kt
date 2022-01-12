@@ -18,17 +18,21 @@ class Service(
         var type: String,
         var data_ini: String,
         var data_fi: String,
+        var publishDate: String,
+        var userEmail: String
     //var photo: String?
 ) : Parcelable {
 
-    constructor(id: String,
-                name: String,
+    constructor(name: String,
                 description: String,
                 ubication: String,
                 type: String,
                 var data_ini: String,
                 var data_fi: String,
-    ) : this(id, name, description, ubication, "disponible", data_ini, data_fi)
+                publishDate: String,
+                userEmail: String
+    ) : this(id, name, description, ubication, "Disponible", data_ini, data_fi, publishDate, userEmail)
+
 
     companion object {
         fun DocumentSnapshot.toService(): Service? {
@@ -40,8 +44,9 @@ class Service(
                 val type = getString("type")!!
                 val data_ini = getString("data_ini")!!
                 val data_fi = getString("data_fi")!!
-
-                return Service(id, name, description, ubication, state, type, dat_ini, data_fi)
+                val publishDate = getString("publishDate")!!
+                val userEmail = getString("userEmail")!!
+                return Service(id, name, description, ubication, state, type, data_ini, data_fi, publishDate, userEmail)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting service", e)
                 FirebaseCrashlytics.getInstance().log("Error converting service")

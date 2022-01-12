@@ -30,6 +30,8 @@ import kotlinx.android.synthetic.main.activity_crear_perfil.CrearServiceButton
 import kotlinx.android.synthetic.main.activity_crear_perfil.textInputLayoutNom
 import kotlinx.android.synthetic.main.activity_crear_service.*
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 /** Classe CrearService
  *
@@ -127,21 +129,27 @@ class CrearServiceActivity : AppCompatActivity() {
                 var dat_ini = data_ini?.text.toString()
                 var dat_ini:= data_fi?.text.toString()
                 when {
-                    Tipus_Canguratge?.isChecked == true -> type = "G"
-                    Tipus_Transport?.isChecked == true -> type = "T"
-                    Tipus_Classes?.isChecked == true -> type = "C"
-                    Tipus_Banc?.isChecked == true -> type = "B"
-                    Tipus_Compartir?.isChecked == true -> type = "S"
-                    else -> type = "A"
+                    Tipus_Canguratge?.isChecked == true -> type = "Canguratge"
+                    Tipus_Transport?.isChecked == true -> type = "Transport"
+                    Tipus_Classes?.isChecked == true -> type = "Classes"
+                    Tipus_Banc?.isChecked == true -> type = "Banc"
+                    Tipus_Compartir?.isChecked == true -> type = "Compartir"
+                    else -> type = "Altre"
                 }
                 //No sé cómo guardar el id porque el nombre no es el identificador y el id no se saca de ningún sitio
-                val service = Service(id, name, descripcio, ubicacio, type, data_ini, data_fi)
+                //val service = Service(id, name, descripcio, ubicacio, type, data_ini, data_fi)
+                val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+                val publishDate = sdf.format(Date())
+
+                val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+                val userEmail = prefs.getString("email", null)
+                val service = Service(name, descripcio, ubicacio, type, data_ini, data_fi, publishDate, userEmail!!)
                 viewModel.createService(service)
                 viewModel.service.observe(this, Observer {
                     if (it.status == Resource.Status.SUCCESS) {
-                        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                        prefs.putString("state", "Disponible")
-                        prefs.apply()
+                        //val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+                        //prefs.putString("state", "Disponible")
+                        //prefs.apply()
                         showHome()
                     }
                     else if (it.status == Resource.Status.ERROR) {
@@ -235,6 +243,7 @@ class CrearServiceActivity : AppCompatActivity() {
         private fun show(message: String) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
     }
+
     private fun capturePhoto(){ //???????????????
         val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
         if(capturedImage.exists()) {
@@ -252,11 +261,13 @@ class CrearServiceActivity : AppCompatActivity() {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri)
         startActivityForResult(intent, OPERATION_CAPTURE_PHOTO)
     }
+
     private fun openGallery(){
         val intent = Intent("android.intent.action.GET_CONTENT")
         intent.type = "image/*"
         startActivityForResult(intent, OPERATION_CHOOSE_PHOTO)
     }
+
     private fun renderImage(imagePath: String?){
         if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
@@ -266,6 +277,7 @@ class CrearServiceActivity : AppCompatActivity() {
             show("ImagePath is null")
         }
     }
+
     private fun getImagePath(uri: Uri?, selection: String?): String {
         var path: String? = null
         val cursor = contentResolver.query(uri!!, null, selection, null, null )

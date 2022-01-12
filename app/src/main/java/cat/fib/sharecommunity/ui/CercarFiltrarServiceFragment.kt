@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,15 +15,18 @@ import androidx.recyclerview.widget.RecyclerView
 //import cat.fib.sharecommunity.CardViewItem
 import cat.fib.sharecommunity.CardViewNom
 import cat.fib.sharecommunity.ConsultarProducteActivity
-import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.RecyclerViewAdapter
+//import cat.fib.sharecommunity.R
+//import cat.fib.sharecommunity.RecyclerViewAdapter
+import cat.fib.sharecommunity.*
 import cat.fib.sharecommunity.dataclasses.Service
 import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.viewmodels.ServiceViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_cercar_filtrar_producte.*
 
 // Paràmetres d'inicialització del Fragment
-private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
+private const val EXTRA_MESSAGE_1 = "cat.fib.sharecommunity.MESSAGE1"
+private const val EXTRA_MESSAGE_2 = "cat.fib.sharecommunity.MESSAGE2"
 
 /** Fragment CercarFiltrarService
  *
@@ -36,7 +40,7 @@ class CercarFiltrarServiceFragment : Fragment(), RecyclerViewAdapter.OnItemClick
 
     private val viewModel by viewModels<ServiceViewModel>()       // ViewModel dels serveis
 
-    private var llistatServices: List<Service>? = null             // Llistat del model serveis
+    private var llistatServices: ArrayList<Service>? = null             // Llistat del model serveis
 
     lateinit var recyclerView: RecyclerView                     // RecyclerView de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
     lateinit var list: ArrayList<CardViewItem>                  // Llistat de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
@@ -69,10 +73,11 @@ class CercarFiltrarServiceFragment : Fragment(), RecyclerViewAdapter.OnItemClick
         recyclerView = view.findViewById(R.id.recycler_view)
         list = ArrayList<CardViewItem>()
 
-        viewModel.getServices()
+        viewModel.getAvailableServices()
         viewModel.services?.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
                 llistatServices = it.data
+                System.out.println(it.data)
                 setContent()
             }
             else if (it.status == Resource.Status.ERROR)
@@ -110,9 +115,11 @@ class CercarFiltrarServiceFragment : Fragment(), RecyclerViewAdapter.OnItemClick
      */
     override fun onItemClick(position: Int) {
 
-        val nomIdentificadorProducte = llistatServices!![position].name
+        val idService = llistatServices!![position].id
+        val userEmailProduct = llistatServices!![position].userEmail
         val intent = Intent(activity, ConsultarServiceActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, nomIdentificadorProducte)
+            putExtra(EXTRA_MESSAGE_1, idService)
+            putExtra(EXTRA_MESSAGE_2, userEmailProduct)
         }
         startActivity(intent)
 

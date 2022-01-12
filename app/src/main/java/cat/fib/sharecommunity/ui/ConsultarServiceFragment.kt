@@ -1,6 +1,6 @@
 package cat.fib.sharecommunity.ui
 
-import android.content.res.Configuration
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +15,12 @@ import cat.fib.sharecommunity.R
 import cat.fib.sharecommunity.dataclasses.Service
 import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.viewmodels.ServiceViewModel
-import com.squareup.picasso.Picasso
+
 import dagger.hilt.android.AndroidEntryPoint
 
 // Paràmetres d'inicialització del Fragment
-private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
+private const val EXTRA_MESSAGE_1 = "cat.fib.sharecommunity.MESSAGE1"
+private const val EXTRA_MESSAGE_2 = "cat.fib.sharecommunity.MESSAGE2"
 
 /** Fragment ConsultarService
  *
@@ -33,7 +34,8 @@ class ConsultarServiceFragment : Fragment() {
 
     private val viewModel by viewModels<ServiceViewModel>()    // ViewModel del servei
 
-    private var nomIdentificadorService: String? = null  // Nom identificador del servei
+    private var idService: String? = null  // ID del servei
+    private var userEmailService: String? = null  // userEmail del servei
 
     lateinit var imatgeService: ImageView              // ImageView amb la imatge del servei
     lateinit var nomService: TextView                  // TextView amb el nom del servei
@@ -43,6 +45,8 @@ class ConsultarServiceFragment : Fragment() {
     lateinit var contingutTipusService: TextView       // TextView amb el tipus del servei
     lateinit var contingutDataIniService: TextView       // TextView amb la data d'inici del servei
     lateinit var contingutDataFiService: TextView       // TextView amb la data final del servei
+    lateinit var contingutDataPublicacio: TextView      // TextView amb la data de publicació del servei
+    lateinit var contingutEmailUsuari: TextView         // TextView amb l'email de l'usuari del servei
 
     /** Function onCreate
      *
@@ -53,7 +57,8 @@ class ConsultarServiceFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        nomIdentificadorService = activity?.intent?.getStringExtra(EXTRA_MESSAGE)
+        idService = activity?.intent?.getStringExtra(EXTRA_MESSAGE_1)
+        userEmailService = activity?.intent?.getStringExtra(EXTRA_MESSAGE_2)
     }
 
     /** Function onCreateView
@@ -77,9 +82,11 @@ class ConsultarServiceFragment : Fragment() {
         contingutTipusService = view.findViewById(R.id.contingutTipusService)
         contingutDataIniService = view.findViewById(R.id.contingutDataIniService)
         contingutDataFiService = view.findViewById(R.id.contingutDataFiService)
+        contingutDataPublicacio = view.findViewById(R.id.contingutDataPublicacio)
+        contingutEmailUsuari = view.findViewById(R.id.contingutEmailUsuari)
 
-        nomIdentificadorService?.let {
-            viewModel.getProduct(it)
+        idService?.let {
+            viewModel.getService(userEmailService!!, it)
         }
 
         viewModel.service?.observe(viewLifecycleOwner, Observer {
@@ -103,11 +110,12 @@ class ConsultarServiceFragment : Fragment() {
         //Picasso.get().load(Configuration.Companion.urlServer + classData?.pre.toString()).into(imatgeProducte)
         nomService.text = productData?.name.toString()
         contingutDescripcioService.text = serviceData?.description.toString()
-        contingutUbicacioService.text = serviceData?.ubication.toString()
-        contingutEstatService.text = stateName(serviceData?.state.toString())
-        contingutTipusService.text = typeName(serviceData?.type.toString())
+        contingutEstatService.text = serviceData?.state.toString()
+        contingutTipusService.text = serviceData?.type.toString()
+        contingutDataPublicacio.text = serviceData?.publishDate.toString()
+        contingutEmailUsuari.text = serviceData?.userEmail.toString()
     }
-
+/*
     private fun stateName(state: String): String? {
         when (state) {
             "D" -> return "Disponible"
@@ -115,7 +123,7 @@ class ConsultarServiceFragment : Fragment() {
             "F" -> return "Finalitzat"
             else -> return null
         }
-    }
+    }*/
 
     private fun typeName(type: String): String? {
         when (type) {
