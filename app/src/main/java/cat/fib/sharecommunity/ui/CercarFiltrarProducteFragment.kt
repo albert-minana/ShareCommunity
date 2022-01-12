@@ -89,7 +89,7 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
      */
     private fun setContent(){
         for (i in llistatProductes!!) {
-            val imatge = i.photo!!
+            var imatge = i.photo
             val nom = i.name
             val item = CardViewItem(imatge, nom)
             list.plusAssign(item)

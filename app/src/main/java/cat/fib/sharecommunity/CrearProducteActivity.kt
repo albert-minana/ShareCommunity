@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.dataclasses.Product
 import cat.fib.sharecommunity.dataclasses.Resource
@@ -126,12 +127,15 @@ class CrearProducteActivity : AppCompatActivity() {
                     Tipus_Joguines?.isChecked == true -> type = "Joguines"
                     else -> type = "Altre"
                 }
+                val photo = mUri?.path.toString()
+
+
                 val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
                 val publishDate = sdf.format(Date())
 
                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
                 val userEmail = prefs.getString("email", null)
-                val product = Product(name, descripcio, ubicacio, type, publishDate, userEmail!!)
+                val product = Product(name, descripcio, ubicacio, type, photo, publishDate, userEmail!!)
                 viewModel.createProduct(product)
                 viewModel.product.observe(this, Observer {
                     if (it.status == Resource.Status.SUCCESS) {
@@ -234,7 +238,7 @@ class CrearProducteActivity : AppCompatActivity() {
         }
         capturedImage.createNewFile()
         mUri = if(Build.VERSION.SDK_INT >= 24){
-            FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
+            FileProvider.getUriForFile(this, "cat.fib.sharecommunity.fileprovider",
                 capturedImage)
         } else {
             Uri.fromFile(capturedImage)
@@ -297,6 +301,7 @@ class CrearProducteActivity : AppCompatActivity() {
         else if ("file".equals(uri?.scheme, ignoreCase = true)){
             imagePath = uri?.path
         }
+        mUri = imagePath?.toUri()
         renderImage(imagePath)
     }
 

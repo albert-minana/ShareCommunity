@@ -1,7 +1,9 @@
 package cat.fib.sharecommunity.firebaseserviceobjects
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
+import androidx.core.net.toUri
 import cat.fib.sharecommunity.R
 import cat.fib.sharecommunity.dataclasses.Product
 import cat.fib.sharecommunity.dataclasses.Product.Companion.toProduct
@@ -9,17 +11,35 @@ import cat.fib.sharecommunity.dataclasses.Resource
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 import okhttp3.internal.wait
+import java.io.File
 
 object FirebaseProductService {
     private const val TAG = "FirebaseProductService"
     suspend fun createProduct(product: Product): Resource<Product>? {
         val db = FirebaseFirestore.getInstance()
+        val storage = FirebaseStorage.getInstance()
+        System.out.println("000000----------------------------------------------------------------------------------------")
+        System.out.println(product.photo)
+        val file = Uri.fromFile(File(product.photo))
+        lateinit var imageLink : String
+        storage.getReference().child("images").putFile(file)
+                .addOnSuccessListener {
+                    val result = it.metadata!!.reference!!.downloadUrl
+                    result.addOnSuccessListener {
+                        imageLink = it.toString()
+                        System.out.println("111111----------------------------------------------------------------------------------------")
+                        System.out.println(imageLink)
+                    }
+                }
+        System.out.println("22222----------------------------------------------------------------------------------------")
+        System.out.println(imageLink)
         try {
             val id = db.collection("users").document(product.userEmail).collection("products")
                     .add(hashMapOf("name" to product.name, "description" to product.description, "ubication" to product.ubication,
-                                   "state" to product.state, "type" to product.type, "photo" to product.photo)).await().id
+                                   "state" to product.state, "type" to product.type, "photo" to product.photo, "publishDate" to product.publishDate, "userEmail" to product.userEmail)).await().id
             product.id = id
             val createdProduct = db.collection("users").document(product.userEmail).collection("products").document(product.id).get().await().toProduct()
             return Resource.success(createdProduct)

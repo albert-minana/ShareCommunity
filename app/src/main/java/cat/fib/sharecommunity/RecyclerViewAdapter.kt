@@ -23,7 +23,8 @@ class RecyclerViewAdapter(
         val currentItem = cardViewList[position]
 
         // Format de la imatge en URL
-        Picasso.get().load(currentItem.image).into(holder.imageView)
+        if (currentItem.image != null) Picasso.get().load(currentItem.image).into(holder.imageView)
+        else holder.imageView.setImageResource(R.drawable.ic_menu_products)
 
         holder.textView.text = currentItem.text
     }
