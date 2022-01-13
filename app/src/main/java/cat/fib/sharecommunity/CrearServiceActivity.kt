@@ -1,5 +1,6 @@
 package cat.fib.sharecommunity
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 
@@ -10,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.dataclasses.Service
 import cat.fib.sharecommunity.dataclasses.Resource
+import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
 import cat.fib.sharecommunity.viewmodels.ServiceViewModel
+import com.whygraphics.multilineradiogroup.MultiLineRadioGroup
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_crear_perfil.textInputLayoutNom
 import kotlinx.android.synthetic.main.activity_crear_service.*
@@ -39,6 +42,9 @@ class CrearServiceActivity : AppCompatActivity() {
     var Data_Inici: EditText? = null
     var Data_Fi: EditText? = null
 
+    var mMultiLineRadioGroup: MultiLineRadioGroup? = null
+
+
     private val viewModel by viewModels<ServiceViewModel>()
 
 
@@ -63,9 +69,16 @@ class CrearServiceActivity : AppCompatActivity() {
         Tipus_Compartir = findViewById(R.id.Tipus_Compartir)
         Tipus_Altre = findViewById(R.id.Tipus_Altre)
         Data_Inici = findViewById(R.id.DataInici)
+        Data_Inici?.setOnClickListener {
+            showStartDatePickerDialog()
+        }
         Data_Fi = findViewById(R.id.DataFi)
+        Data_Fi?.setOnClickListener {
+            showEndDatePickerDialog()
+        }
 
         setupSendButton()
+        mMultiLineRadioGroup = findViewById(R.id.main_activity_multi_line_radio_group);
     }
 
     /** Function setupSendButton
@@ -237,7 +250,7 @@ class CrearServiceActivity : AppCompatActivity() {
         }
         else {
             if(data_fi < data_ini) {
-                textInputLayoutDataInici?.setError("La data no pot ser anterior a la inicial")
+                textInputLayoutDataFi?.setError("La data no pot ser anterior a la inicial")
                 return false
             }
             textInputLayoutDataFi?.setError(null)
@@ -260,5 +273,47 @@ class CrearServiceActivity : AppCompatActivity() {
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(homeIntent)
     }
+
+    /** Funció showStartDatePickerDialog
+     *
+     *  Funció que selecciona la data marcada en el fragment del calendari i l'assigna a la data de d'inici del servei.
+     *
+     *  @author Daniel Cárdenas.
+     */
+    private fun showStartDatePickerDialog() {
+        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dayStr = day.twoDigits()
+            val monthStr = (month + 1).twoDigits() // +1 because January is zero
+            val selectedDate = "$dayStr/$monthStr/$year"
+            Data_Inici?.setText(selectedDate)
+        })
+
+        newFragment.show(supportFragmentManager, "datePicker")
+    }
+
+    /** Funció showEndDatePickerDialog
+     *
+     *  Funció que selecciona la data marcada en el fragment del calendari i l'assigna a la data final del servei.
+     *
+     *  @author Daniel Cárdenas.
+     */
+    private fun showEndDatePickerDialog() {
+        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dayStr = day.twoDigits()
+            val monthStr = (month + 1).twoDigits() // +1 because January is zero
+            val selectedDate = "$dayStr/$monthStr/$year"
+            Data_Fi?.setText(selectedDate)
+        })
+
+        newFragment.show(supportFragmentManager, "datePicker")
+    }
+
+    /** Funció twoDigits
+     *
+     *  Funció que afegeix el dígit '0' davant d'un nombre menor que 10.
+     *
+     *  @author Daniel Cárdenas.
+     */
+    fun Int.twoDigits() = if (this <= 9) "0$this" else this.toString()
 
 }

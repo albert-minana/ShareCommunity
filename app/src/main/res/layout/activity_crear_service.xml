@@ -116,133 +116,70 @@
                     app:hintAnimationEnabled="false"
                     app:hintEnabled="false">
 
-                    <RadioGroup
-                        android:id="@+id/TypeSelection"
+                    <com.whygraphics.multilineradiogroup.MultiLineRadioGroup
+                        android:id="@+id/main_activity_multi_line_radio_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hapticFeedbackEnabled="false"
-                        android:orientation="vertical"
-                        android:transitionGroup="false">
+                        app:default_button="button_2"
+                        app:max_in_row="2"
+                        app:radio_buttons="@array/radio_buttons"
+                        android:textColor="@color/radiobuttonstate"
+                        android:textSize="16sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.35"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/Tipus_Transport"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.35"
-                                android:text="@string/Tipus_Transport"
-                                android:textColor="@color/radiobuttonstate"
-                                android:textSize="16sp" />
-
-                            <RadioButton
-                                android:id="@+id/Tipus_Canguratge"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.35"
-                                android:text="@string/Tipus_Canguratge"
-                                android:textColor="@color/radiobuttonstate"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.35"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/Tipus_Banc"
-                                android:layout_width="356dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.35"
-                                android:text="@string/Tipus_Banc"
-                                android:textColor="@color/radiobuttonstate"
-                                android:textSize="16sp" />
-
-                            <RadioButton
-                                android:id="@+id/Tipus_Classes"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.33"
-                                android:text="@string/Tipus_Classes"
-                                android:textColor="@color/radiobuttonstate"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.35"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/Tipus_Compartir"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.35"
-                                android:text="@string/Tipus_Compartir"
-                                android:textColor="@color/radiobuttonstate"
-                                android:textSize="16sp" />
-
-                            <RadioButton
-                                android:id="@+id/Tipus_Altre"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.35"
-                                android:text="@string/Tipus_Altre"
-                                android:textColor="@color/radiobuttonstate"
-                                android:textSize="16sp"
-                                app:errorEnabled="true" />
-
-                        </LinearLayout>
-
-                    </RadioGroup>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutDataInici"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:errorEnabled="true">
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/DataInici"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutDataInici"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="true"
-                        android:datePickerMode="calendar"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:hint="@string/Data_Inici"
-                        android:inputType="date"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        app:errorEnabled="true"
+                        android:layout_weight="1">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutDataFi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
+                        <EditText
+                            android:id="@+id/DataInici"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="#00FFFFFF"
+                            android:clickable="true"
+                            android:datePickerMode="calendar"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="@string/Data_Inici"
+                            android:inputType="date"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/DataFi"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutDataFi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="true"
-                        android:datePickerMode="calendar"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:hint="@string/Data_Fi"
-                        android:inputType="date"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:id="@+id/DataFi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:clickable="true"
+                            android:datePickerMode="calendar"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="@string/Data_Fi"
+                            android:inputType="date"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 

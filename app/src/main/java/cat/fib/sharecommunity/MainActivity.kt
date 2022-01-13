@@ -116,8 +116,8 @@ class MainActivity : AppCompatActivity()  {
     }
 
     public fun showCreateService(view: View) {
-        //val createProductIntent = Intent(applicationContext, CrearProducteActivity::class.java)
-        //startActivity(createProductIntent)
+        val createServiceIntent = Intent(applicationContext, CrearServiceActivity::class.java)
+        startActivity(createServiceIntent)
 
     }
 

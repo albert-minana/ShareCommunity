@@ -52,4 +52,4 @@ class Product(
         }
         private const val TAG = "Product"
     }
-}Product
+}

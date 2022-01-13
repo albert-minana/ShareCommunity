@@ -30,11 +30,11 @@ class DatePickerFragment : DialogFragment() {
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        val datePickerDialog = DatePickerDialog(requireActivity(), listener, year - 7, month, day)
+        val datePickerDialog = DatePickerDialog(requireActivity(), listener, year, month, day)
 
-        c.set(Calendar.YEAR, year - 110)
+        c.set(Calendar.DAY_OF_MONTH, day)
         datePickerDialog.datePicker.minDate = c.timeInMillis
-        c.set(Calendar.YEAR, year - 7)
+        c.set(Calendar.YEAR, year + 1)
         datePickerDialog.datePicker.maxDate = c.timeInMillis
         return datePickerDialog
     }

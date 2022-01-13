@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="radio_buttons">
+        <item>Transport</item>
+        <item>Activitat</item>
+        <item>Canguratge</item>
+        <item>Classes</item>
+        <item>Experiencies</item>
+        <item>Altres</item>
+    </string-array>
+</resources>
