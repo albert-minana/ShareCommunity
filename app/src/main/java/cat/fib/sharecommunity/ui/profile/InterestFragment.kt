@@ -20,11 +20,11 @@ import dagger.hilt.android.AndroidEntryPoint
  *
  *  Fragment encarregat de consultar i modificar la informació d'esport del perfil d'usuari
  *
- *  @constructor Crea el Fragment SportFragment
+ *  @constructor Crea el Fragment InterestFragment
  *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
  */
 @AndroidEntryPoint
-class SportFragment : Fragment(R.layout.fragment_sport) {
+class InterestFragment : Fragment(R.layout.fragment_sport) {
 /*
     private val viewModel by viewModels<UserViewModel>()
 

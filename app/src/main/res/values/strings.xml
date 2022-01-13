@@ -94,4 +94,6 @@
     <string name="eliminar">Eliminar</string>
     <string name="editar">Editar</string>
     <string name="finalitzar">Finalitzar</string>
+    <string name="historic">Històric</string>
+    <string name="interes">Interès</string>
 </resources>

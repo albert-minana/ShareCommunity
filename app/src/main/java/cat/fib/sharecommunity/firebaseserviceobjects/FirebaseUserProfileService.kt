@@ -7,6 +7,7 @@ import cat.fib.sharecommunity.dataclasses.UserProfile.Companion.toUserProfile
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 
 object FirebaseUserProfileService {
@@ -74,7 +75,33 @@ object FirebaseUserProfileService {
         }
     }
 
+    suspend fun deleteUser(email: String): Resource<String>? {
+        val db = FirebaseFirestore.getInstance()
+        val storage = FirebaseStorage.getInstance()
+        try {
+            val deleteProducts = db.collection("users").document(email).collection("products").get().await()
+            deleteProducts.documents.forEach {
+                it.reference.delete().await()
+            }
+            val deleteServices = db.collection("users").document(email).collection("services").get().await()
+            deleteServices.documents.forEach {
+                it.reference.delete().await()
+            }
+            val deletePhotos = storage.getReference().child("/" + email).listAll().await()
+            deletePhotos.items.map {
+                it.delete().await()
+            }
 
+            db.collection("users").document(email).delete().await()
+            return Resource.success(email)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error deleting user: ", e)
+            FirebaseCrashlytics.getInstance().log("Error deleting user")
+            FirebaseCrashlytics.getInstance().setCustomKey("email", email)
+            FirebaseCrashlytics.getInstance().recordException(e)
+            return Resource.error(e)
+        }
+    }
 
 
 }

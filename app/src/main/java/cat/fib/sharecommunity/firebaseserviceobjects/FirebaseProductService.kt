@@ -108,7 +108,6 @@ object FirebaseProductService {
     }
 
     suspend fun deleteProduct(id: String, userEmail: String): Resource<String>? {
-        lateinit var resourceResult : Resource<String>
         val db = FirebaseFirestore.getInstance()
         try {
             db.collection("users").document(userEmail).collection("products").document(id).delete().await()

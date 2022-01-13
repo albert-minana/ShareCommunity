@@ -15,6 +15,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.AuthenticationProviders
 import cat.fib.sharecommunity.R
+import cat.fib.sharecommunity.dataclasses.Resource
+import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Fragment Profile
@@ -22,14 +24,14 @@ import dagger.hilt.android.AndroidEntryPoint
  *  Fragment encarregat de consultar i modificar la informació completa del perfil d'usuari
  *
  *  @constructor Crea el Fragment ProfileFragment
- *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
+ *  @author Albert Miñana Montecino, Adrià Espinola Garcia
  */
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
-/*
-    private val viewModel by viewModels<UserViewModel>()
 
-    private var identificadorUsuari: String? = null   // Identificador de l'usuari
+    private val viewModel by viewModels<UserProfileViewModel>()
+
+    private var emailUsuari: String? = null   // Identificador de l'usuari
 
 
     /** Function onCreate
@@ -37,12 +39,12 @@ class ProfileFragment : Fragment() {
      *  Funció encarregada de crear el fragment
      *
      *  @param savedInstanceState
-     *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
+     *  @author Albert Miñana Montecino, Adrià Espinola Garcia
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val prefs = requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        identificadorUsuari = prefs.getString("email", null)
+        emailUsuari = prefs.getString("email", null)
     }
 
     /** Function onCreateView
@@ -52,7 +54,7 @@ class ProfileFragment : Fragment() {
      *  @param inflater
      *  @param container
      *  @param savedInstanceState
-     *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
+     *  @author Albert Miñana Montecino, Adrià Espinola Garcia
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -60,12 +62,12 @@ class ProfileFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
         val userFragment = UserFragment()
-        val physicalFragment = PhysicalFragment()
-        val sportFragment = SportFragment()
+        val interestFragment = InterestFragment()
+        val historyFragment = HistoryFragment()
 
         val buttonUser: Button = view.findViewById(R.id.dadesUsuari)
-        val buttonPhysical: Button = view.findViewById(R.id.dadesFisic)
-        val buttonSport: Button = view.findViewById(R.id.dadesEsport)
+        val buttonInterest: Button = view.findViewById(R.id.dadesIneteres)
+        val buttonHistory: Button = view.findViewById(R.id.dadesHistoric)
         val buttonDelete: Button = view.findViewById(R.id.eliminarPerfil)
 
         // Establim el userFragment per defecte
@@ -82,28 +84,26 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        // Configurem el buttonPhysical per mostrar el fragment physicalFragment
-        buttonPhysical.setOnClickListener {
+        // Configurem el buttonInterest per mostrar el fragment interestFragment
+        buttonInterest.setOnClickListener {
             childFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragment, physicalFragment)
+                replace(R.id.flFragment, interestFragment)
                 commit()
             }
         }
 
-        // Configurem el buttonSport per mostrar el fragment sportFragment
-        buttonSport.setOnClickListener {
+        // Configurem el buttonHistory per mostrar el fragment historyFragment
+        buttonHistory.setOnClickListener {
             childFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragment, sportFragment)
+                replace(R.id.flFragment, historyFragment)
                 commit()
             }
         }
 
         // Configurem el buttonDelete per eliminar un perfil d'usuari
         buttonDelete.setOnClickListener {
-            println("Intent eliminar")
             confirmDeleteUserProfile()
         }
-
         return view
     }
 
@@ -111,22 +111,21 @@ class ProfileFragment : Fragment() {
      *
      *  Funció encarregada d'eliminar el perfil d'usuari
      *
-     *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
+     *  @author Albert Miñana Montecino, Adrià Espinola Garcia
      */
     private fun deleteUserProfile() {
-        identificadorUsuari?.let {
-            viewModel.deleteUser(it.toInt())
+        emailUsuari?.let {
+            viewModel.deleteUser(it)
         }
-
-        viewModel.user.observe(viewLifecycleOwner, Observer {
-            if (it.status == Status.SUCCESS) {
+        viewModel.idUserProfile.observe(viewLifecycleOwner, Observer {
+            if (it.status == Resource.Status.SUCCESS) {
                 val prefs = requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                 prefs.clear()
                 prefs.apply()
                 val intent = Intent(activity, AuthenticationProviders::class.java)
                 startActivity(intent)
             }
-            else if (it.status == Status.ERROR) Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
+            else if (it.status == Resource.Status.ERROR) Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
         })
     }
 
@@ -134,7 +133,7 @@ class ProfileFragment : Fragment() {
      *
      *  Funció encarregada de confirmar la petició d'eliminació del perfil d'usuari
      *
-     *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael
+     *  @author Albert Miñana Montecino, Adrià Espinola Garcia
      */
     public fun confirmDeleteUserProfile() {
         val builder = AlertDialog.Builder(requireActivity())
@@ -146,5 +145,5 @@ class ProfileFragment : Fragment() {
         dialog.create()
         dialog.show()
     }
-*/
+
 }
