@@ -130,7 +130,7 @@ class CrearProducteActivity : AppCompatActivity() {
                 val photo = mUri?.path.toString()
 
 
-                val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+                val sdf = SimpleDateFormat("dd-M-yyyy hh:mm:ss")
                 val publishDate = sdf.format(Date())
 
                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
