@@ -11,7 +11,9 @@ import kotlinx.coroutines.launch
 
 class UserProfileViewModel : ViewModel() {
     private val _userProfile = MutableLiveData<Resource<UserProfile>>()
+    private val _idUserProfile = MutableLiveData<Resource<String>>()
     val userProfile: LiveData<Resource<UserProfile>> = _userProfile
+    val idUserProfile: LiveData<Resource<String>> = _idUserProfile
     //lateinit var userProfile : MutableLiveData<Resource<UserProfile>>
 
    /* fun getUserProfile(email: String) {
@@ -35,6 +37,12 @@ class UserProfileViewModel : ViewModel() {
     fun createUser(user: UserProfile) {
         viewModelScope.launch {
             _userProfile.value = FirebaseUserProfileService.createUser(user)
+        }
+    }
+
+    fun deleteUser(email: String) {
+        viewModelScope.launch {
+            _idUserProfile.value = FirebaseUserProfileService.deleteUser(email)
         }
     }
 

@@ -14,7 +14,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.MainActivity
 import cat.fib.sharecommunity.R
+import cat.fib.sharecommunity.dataclasses.UserProfile
 import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
+import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textfield.TextInputLayout.END_ICON_NONE
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,11 +34,11 @@ import java.time.format.DateTimeFormatter
 @AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
 /*
-    private val viewModel by viewModels<UserViewModel>()
+    private val viewModel by viewModels<UserProfileViewModel>()
 
-    private var identificadorUsuari: String? = null     // Identificador de l'usuari
+    private var emailUsuari: String? = null     // Identificador de l'usuari
     private var proveidor: String? = null               // Proveïdor de l'usuari
-    private var user: User? = null                      // Model de l'usuari
+    private var usuari: UserProfile? = null                      // Model de l'usuari
 */
     lateinit var nom: TextView
     lateinit var cognoms: TextView
@@ -56,14 +58,13 @@ class UserFragment : Fragment(R.layout.fragment_user) {
      *  Funció encarregada de crear el fragment
      *
      *  @param savedInstanceState
-     *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
+     *  @author Albert Miñana Montecino, Adrià Espinola Garcia
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val prefs = requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        identificadorUsuari = prefs.getString("email", null)
+        emailUsuari = prefs.getString("email", null)
         proveidor = prefs.getString("provider", null)
-
     }
 
     /** Function onCreateView
@@ -73,7 +74,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
      *  @param inflater
      *  @param container
      *  @param savedInstanceState
-     *  @author Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
+     *  @author Albert Miñana Montecino, Adrià Espinola Garcia
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v: View = inflater.inflate(R.layout.fragment_user, container, false)
@@ -216,7 +217,9 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         }
     }
 
- */
+*/
+
+
     /** Function validateName
      *
      *  Funció que comprova si el camp Nom és correcte.

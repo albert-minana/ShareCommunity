@@ -16,15 +16,19 @@ class Product(
         var ubication: String,
         var state: String,
         var type: String,
-        var photo: String?
+        var photo: String?,
+        var publishDate: String,
+        var userEmail: String
 ) : Parcelable {
 
-    constructor(id: String,
-                name: String,
+    constructor(name: String,
                 description: String,
                 ubication: String,
                 type: String,
-    ) : this(id, name, description, ubication, "disponible", type, null)
+                photo: String?,
+                publishDate: String,
+                userEmail: String
+    ) : this("0", name, description, ubication, "Disponible", type, photo, publishDate, userEmail)
 
     companion object {
         fun DocumentSnapshot.toProduct(): Product? {
@@ -35,8 +39,9 @@ class Product(
                 val state = getString("state")!!
                 val type = getString("type")!!
                 val photo = getString("photo")
-
-                return Product(id, name, description, ubication, state, type, photo)
+                val publishDate = getString("publishDate")!!
+                val userEmail = getString("userEmail")!!
+                return Product(id, name, description, ubication, state, type, photo, publishDate, userEmail)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting product", e)
                 FirebaseCrashlytics.getInstance().log("Error converting product")

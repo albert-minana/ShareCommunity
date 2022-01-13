@@ -39,30 +39,30 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-                    android:text="@string/DadesPersonals"
+                    android:text="@string/menu_profile"
                     app:icon="@drawable/ic_menu_profile"
                     app:iconGravity="top" />
 
                 <Button
-                    android:id="@+id/dadesFisic"
+                    android:id="@+id/dadesIneteres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-                    android:text="DadesFísiques"
-                    app:icon="@drawable/ic_menu_gallery"
+                    android:text="@string/interes"
+                    app:icon="@drawable/ic_preferences"
                     app:iconGravity="top" />
 
                 <Button
-                    android:id="@+id/dadesEsport"
+                    android:id="@+id/dadesHistoric"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-                    android:text="DadesEsportives"
-                    app:icon="@drawable/ic_menu_gallery"
+                    android:text="@string/historic"
+                    app:icon="@drawable/ic_history"
                     app:iconGravity="top" />
             </LinearLayout>
 

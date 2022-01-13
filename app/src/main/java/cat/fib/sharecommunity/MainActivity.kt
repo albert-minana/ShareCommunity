@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity()  {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_home, R.id.nav_products,  R.id.nav_services, R.id.nav_personalspace, R.id.nav_profile), drawerLayout)
+                R.id.nav_home, R.id.nav_products,  R.id.nav_services, R.id.nav_personalspace, R.id.nav_profile), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
@@ -110,7 +110,16 @@ class MainActivity : AppCompatActivity()  {
         startActivity(authenticationIntent)
     }
 
+    public fun showCreateProduct(view: View) {
+        val createProductIntent = Intent(applicationContext, CrearProducteActivity::class.java)
+        startActivity(createProductIntent)
+    }
 
+    public fun showCreateService(view: View) {
+        //val createProductIntent = Intent(applicationContext, CrearProducteActivity::class.java)
+        //startActivity(createProductIntent)
+
+    }
 
 
 }

@@ -5,23 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.fib.sharecommunity.CardViewItem
-import cat.fib.sharecommunity.ConsultarProducteActivity
-import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.RecyclerViewAdapter
+import cat.fib.sharecommunity.*
 import cat.fib.sharecommunity.dataclasses.Product
 import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.viewmodels.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_cercar_filtrar_producte.*
 
 // Paràmetres d'inicialització del Fragment
-private const val EXTRA_MESSAGE = "cat.fib.sharecommunity.MESSAGE"
+private const val EXTRA_MESSAGE_1 = "cat.fib.sharecommunity.MESSAGE1"
+private const val EXTRA_MESSAGE_2 = "cat.fib.sharecommunity.MESSAGE2"
 
 /** Fragment CercarFiltrarProducte
  *
@@ -35,7 +35,7 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
 
     private val viewModel by viewModels<ProductViewModel>()       // ViewModel dels productes
 
-    private var llistatProductes: List<Product>? = null             // Llistat del model producte
+    private var llistatProductes: ArrayList<Product>? = null             // Llistat del model producte
 
     lateinit var recyclerView: RecyclerView                     // RecyclerView de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
     lateinit var list: ArrayList<CardViewItem>                  // Llistat de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
@@ -67,10 +67,11 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
         recyclerView = view.findViewById(R.id.recycler_view)
         list = ArrayList<CardViewItem>()
 
-        viewModel.getProductes()
-        viewModel.productes?.observe(viewLifecycleOwner, Observer {
+        viewModel.getAvailableProducts()
+        viewModel.products?.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
                 llistatProductes = it.data
+                System.out.println(it.data)
                 setContent()
             }
             else if (it.status == Resource.Status.ERROR)
@@ -88,7 +89,7 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
      */
     private fun setContent(){
         for (i in llistatProductes!!) {
-            val imatge = i.photo!!
+            var imatge = i.photo
             val nom = i.name
             val item = CardViewItem(imatge, nom)
             list.plusAssign(item)
@@ -106,10 +107,11 @@ class CercarFiltrarProducteFragment : Fragment(), RecyclerViewAdapter.OnItemClic
      *  @author Daniel Cárdenas Rafael
      */
     override fun onItemClick(position: Int) {
-
-        val nomIdentificadorProducte = llistatProductes!![position].name
+        val id = llistatProductes!![position].id
+        val userEmail = llistatProductes!![position].userEmail
         val intent = Intent(activity, ConsultarProducteActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, nomIdentificadorProducte)
+            putExtra(EXTRA_MESSAGE_1, id)
+            putExtra(EXTRA_MESSAGE_2, userEmail)
         }
         startActivity(intent)
 

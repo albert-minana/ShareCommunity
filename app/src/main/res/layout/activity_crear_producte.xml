@@ -147,7 +147,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.32"
-                            android:text="@string/Tipus_Joguines"
+                            android:text="@string/Tipus_Joguina"
                             android:textColor="@color/radiobuttonstate"
                             android:textSize="16sp" />
 
@@ -181,9 +181,9 @@
                     <ImageView
                         android:id="@+id/mImageView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:contentDescription="Our Image"/>
+                        android:contentDescription="Our Image" />
 
                     <Button
                         android:layout_width="match_parent"
