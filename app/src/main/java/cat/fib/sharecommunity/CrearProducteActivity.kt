@@ -123,8 +123,8 @@ class CrearProducteActivity : AppCompatActivity() {
                 var type: String
                 when {
                     Tipus_Roba?.isChecked == true -> type = "Roba"
-                    Tipus_Material?.isChecked == true -> type = "Material escolar"
-                    Tipus_Joguines?.isChecked == true -> type = "Joguines"
+                    Tipus_Material?.isChecked == true -> type = "Material"
+                    Tipus_Joguines?.isChecked == true -> type = "Joguina"
                     else -> type = "Altre"
                 }
                 val photo = mUri?.path.toString()

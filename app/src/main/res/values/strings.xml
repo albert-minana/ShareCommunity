@@ -79,7 +79,7 @@
     <string name="Tipus_Producte">Tipus</string>
     <string name="Tipus_Roba">Roba</string>
     <string name="Tipus_Material">Material</string>
-    <string name="Tipus_Joguines">Joguines</string>
+    <string name="Tipus_Joguina">Joguina</string>
     <string name="Tipus_Altre">Altre</string>
     <string name="Descripció">Descripció</string>
     <string name="Ubicacio">Ubicació</string>
@@ -89,4 +89,9 @@
     <string name="EmailUsuari">Email de l\'usuari</string>
     <string name="producte">Producte</string>
     <string name="servei">Servei</string>
+    <string name="estat">Estat</string>
+    <string name="tipus">Tipus</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="finalitzar">Finalitzar</string>
 </resources>
