@@ -73,17 +73,31 @@
     <string name="benvinguts">Benvinguts a ShareCommunity!</string>
     <string name="el_meu_espai">El meu espai</string>
     <string name="Crear_Producte">Crea el teu producte</string>
+    <string name="Crear_Service">Crea el teu servei</string>
     <string name="Nom_Producte">Nom producte</string>
+    <string name="Nom_Service">Nom servei</string>
     <string name="Text_Botó_Crear_Producte">Crear producte</string>
+    <string name="Text_Botó_Crear_Servei">Crear servei</string>
     <string name="Tipus">Type</string>
     <string name="Tipus_Producte">Tipus</string>
+    <string name="Tipus_Servei">Tipus</string>
     <string name="Tipus_Roba">Roba</string>
     <string name="Tipus_Material">Material</string>
     <string name="Tipus_Joguines">Joguines</string>
+    <string name="Tipus_Canguratge">Canguratge</string>
+    <string name="Tipus_Transport">Transport</string>
+    <string name="Tipus_Classes">Classes</string>
+    <string name="Tipus_Banc">Activitats</string>
+    <string name="Tipus_Compartir">Experiències</string>
     <string name="Tipus_Altre">Altre</string>
     <string name="Descripció">Descripció</string>
     <string name="Ubicacio">Ubicació</string>
     <string name="Provincia">Província</string>
     <string name="Botón_Foto">Insereix imatge</string>
+    <string name="User_Email">Email Usuari</string>
+    <string name="Publication_Date">Data Publicació</string>
+    <string name="Data_Inici">Data Inici</string>
+    <string name="Data_Fi">Data Fi</string>
+    <string name="Estat">Estat</string>
 
 </resources>

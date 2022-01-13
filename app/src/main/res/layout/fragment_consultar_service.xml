@@ -17,7 +17,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/nomProducte"
+            android:id="@+id/nomService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,7 +40,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/descripcioProducte"
+                android:id="@+id/descripcioService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -49,7 +49,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contingutDescripcioProducte"
+                android:id="@+id/contingutDescripcioService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -74,16 +74,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ubicació"
+                android:text="@string/Ubicacio"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contingutUbicacioProducte"
+                android:id="@+id/contingutUbicacioService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ubicació"
+                android:text="@string/Ubicacio"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -105,16 +105,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Estat"
+                android:text="@string/Estat"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contingutEstatProducte"
+                android:id="@+id/contingutEstatService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Estat"
+                android:text="@string/Estat"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -136,16 +136,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tipus"
+                android:text="@string/Tipus_Servei"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contingutTipusProducte"
+                android:id="@+id/contingutTipusService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tipus"
+                android:text="@string/Tipus_Servei"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -163,20 +163,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/Tipus2"
+                android:id="@+id/Data_Inici"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Data inici"
+                android:text="@string/Data_Inici"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contingutTipusProducte2"
+                android:id="@+id/contingutDataIniService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Data inici"
+                android:text="@string/Data_Inici"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -194,20 +194,82 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/Tipus3"
+                android:id="@+id/Data_Fi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Data fi"
+                android:text="@string/Data_Fi"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contingutTipusProducte3"
+                android:id="@+id/contingutDataFiService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Data fi"
+                android:text="@string/Data_Fi"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Data_publicacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/Publication_Date"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/contingutDataPublicacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/Publication_Date"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/User_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/User_Email"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/contingutEmailUsuari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/User_Email"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

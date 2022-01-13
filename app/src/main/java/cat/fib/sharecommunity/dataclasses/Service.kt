@@ -2,7 +2,6 @@ package cat.fib.sharecommunity.dataclasses
 
 import android.os.Parcelable
 import android.util.Log
-import android.widget.ImageView
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.android.parcel.Parcelize
@@ -20,18 +19,17 @@ class Service(
         var data_fi: String,
         var publishDate: String,
         var userEmail: String
-    //var photo: String?
 ) : Parcelable {
 
     constructor(name: String,
                 description: String,
                 ubication: String,
                 type: String,
-                var data_ini: String,
-                var data_fi: String,
+                data_ini: String,
+                data_fi: String,
                 publishDate: String,
                 userEmail: String
-    ) : this(id, name, description, ubication, "Disponible", data_ini, data_fi, publishDate, userEmail)
+    ) : this("0", name, description, ubication, "Disponible",type ,data_ini, data_fi, publishDate, userEmail)
 
 
     companion object {
@@ -57,4 +55,4 @@ class Service(
         }
         private const val TAG = "Service"
     }
-}Service
+}

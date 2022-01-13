@@ -36,14 +36,14 @@ private const val EXTRA_MESSAGE_2 = "cat.fib.sharecommunity.MESSAGE2"
  *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello Bayarri
  */
 @AndroidEntryPoint
-class CercarFiltrarServiceFragment : Fragment(), RecyclerViewAdapter.OnItemClickListener {
+class CercarFiltrarServiceFragment : Fragment(), RecyclerViewNomAdapter.OnItemClickListener {
 
     private val viewModel by viewModels<ServiceViewModel>()       // ViewModel dels serveis
 
     private var llistatServices: ArrayList<Service>? = null             // Llistat del model serveis
 
     lateinit var recyclerView: RecyclerView                     // RecyclerView de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
-    lateinit var list: ArrayList<CardViewItem>                  // Llistat de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
+    lateinit var list: ArrayList<CardViewNom>                  // Llistat de CardViewItems que contenen la imatge i el nom de tot el conjunt de productes
                                                                 //POTSER NO CALEN
 
     /** Function onCreate
@@ -71,7 +71,7 @@ class CercarFiltrarServiceFragment : Fragment(), RecyclerViewAdapter.OnItemClick
         val view: View = inflater.inflate(R.layout.fragment_cercar_filtrar_service, container, false)
 
         recyclerView = view.findViewById(R.id.recycler_view)
-        list = ArrayList<CardViewItem>()
+        list = ArrayList<CardViewNom>()
 
         viewModel.getAvailableServices()
         viewModel.services?.observe(viewLifecycleOwner, Observer {
@@ -99,9 +99,9 @@ class CercarFiltrarServiceFragment : Fragment(), RecyclerViewAdapter.OnItemClick
             val nom = i.name
             //val item = CardViewItem(imatge, nom)
             val item = CardViewNom(nom)
-            list.plusAssign(item)                       //????
+            list.plusAssign(item)
         }
-        recyclerView.adapter = RecyclerViewAdapter(list, this)
+        recyclerView.adapter = RecyclerViewNomAdapter(list, this)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
     }

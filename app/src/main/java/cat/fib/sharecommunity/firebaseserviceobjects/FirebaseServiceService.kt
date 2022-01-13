@@ -58,7 +58,7 @@ object FirebaseServiceService {
     suspend fun getService(userEmail: String, id: String): Resource<Service>? {
         val db = FirebaseFirestore.getInstance()
         try {
-            val product = db.collection("users").document(userEmail).collection("services").document(id).get().await().toService()
+            val service = db.collection("users").document(userEmail).collection("services").document(id).get().await().toService()
             return Resource.success(service)
         } catch (e: Exception) {
             Log.e(TAG, "Error getting service details", e)
@@ -76,7 +76,7 @@ object FirebaseServiceService {
             .addOnSuccessListener { result ->
                 var servicesList = ArrayList<Service>()
                 for (document in result) {
-                    val product = document.toService()
+                    val service = document.toService()
                     servicesList.add(service!!)
                 }
                 resourceResult = Resource.success(servicesList)
@@ -112,7 +112,7 @@ object FirebaseServiceService {
         return resourceResult
     }
 */
-    */
+
 
     suspend fun getAvailableServices(): Resource<ArrayList<Service>>? {
         val db = FirebaseFirestore.getInstance()
@@ -133,7 +133,7 @@ object FirebaseServiceService {
         }
     }
 
-    suspend fun updateService(product: Service): Resource<Service>? {
+    suspend fun updateService(service: Service): Resource<Service>? {
         lateinit var resourceResult : Resource<Service>
         val db = FirebaseFirestore.getInstance()
         db.collection("users").document(service.userEmail).collection("services").document(service.id)
@@ -153,13 +153,13 @@ object FirebaseServiceService {
     suspend fun deleteAvailableService(userEmail: String, id: String): Resource<String>? {
         lateinit var resourceResult : Resource<String>
         val db = FirebaseFirestore.getInstance()
-        db.collection("users").document(userEmail).collection("products").document(id)
+        db.collection("users").document(userEmail).collection("services").document(id)
             .delete()
             .addOnSuccessListener { result ->
                 resourceResult = Resource.success(id) }
             .addOnFailureListener { exception ->
                 resourceResult = Resource.error(exception)
-                Log.e(TAG, "Error deleting product: ", exception)
+                Log.e(TAG, "Error deleting service: ", exception)
                 FirebaseCrashlytics.getInstance().log("Error deleting service")
                 FirebaseCrashlytics.getInstance().setCustomKey("id", id)
                 FirebaseCrashlytics.getInstance().recordException(exception)

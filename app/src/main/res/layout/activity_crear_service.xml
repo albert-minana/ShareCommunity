@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearServiceActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:baselineAlignBottom="false"
+                    android:clickable="false"
+                    app:srcCompat="@drawable/ic_vector_sharecommunity_logo" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/Crear_Service"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="36sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutNom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/Nom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZÀÁÈÉÌÍÒÓÙÏÜ abcdefghijklmnñopqrstuvwxyzàáèéìíòóùúïü"
+                        android:ems="10"
+                        android:hint="@string/Nom_Service" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutDescripcio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/Descripcio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:ems="10"
+                        android:hint="@string/Descripció" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutUbicacio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/Ubicacio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:ems="10"
+                        android:hint="@string/Provincia" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="17dp"
+                    android:text="@string/Tipus_Servei"
+                    android:textSize="16dp"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-22dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="17dp"
+                    android:paddingRight="17dp"
+                    app:helperTextEnabled="false"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
+
+                    <RadioGroup
+                        android:id="@+id/TypeSelection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hapticFeedbackEnabled="false"
+                        android:orientation="vertical"
+                        android:transitionGroup="false">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.35"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/Tipus_Transport"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:text="@string/Tipus_Transport"
+                                android:textColor="@color/radiobuttonstate"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/Tipus_Canguratge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:text="@string/Tipus_Canguratge"
+                                android:textColor="@color/radiobuttonstate"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.35"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/Tipus_Banc"
+                                android:layout_width="356dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:text="@string/Tipus_Banc"
+                                android:textColor="@color/radiobuttonstate"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/Tipus_Classes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.33"
+                                android:text="@string/Tipus_Classes"
+                                android:textColor="@color/radiobuttonstate"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.35"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/Tipus_Compartir"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:text="@string/Tipus_Compartir"
+                                android:textColor="@color/radiobuttonstate"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/Tipus_Altre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:text="@string/Tipus_Altre"
+                                android:textColor="@color/radiobuttonstate"
+                                android:textSize="16sp"
+                                app:errorEnabled="true" />
+
+                        </LinearLayout>
+
+                    </RadioGroup>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutDataInici"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/DataInici"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:clickable="true"
+                        android:datePickerMode="calendar"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="@string/Data_Inici"
+                        android:inputType="date"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutDataFi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/DataFi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:clickable="true"
+                        android:datePickerMode="calendar"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="@string/Data_Fi"
+                        android:inputType="date"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/CrearServiceButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Text_Botó_Crear_Servei"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

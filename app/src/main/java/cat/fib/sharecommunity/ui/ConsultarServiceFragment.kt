@@ -104,11 +104,11 @@ class ConsultarServiceFragment : Fragment() {
      *  Funció encarregada d'establir el contingut amb la informació completa d'un producte
      *
      *  @param  classData
-     *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello i Bayarri
+     *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello Bayarri
      */
-    fun setContent(productData: Service?){
+    fun setContent(serviceData: Service?){
         //Picasso.get().load(Configuration.Companion.urlServer + classData?.pre.toString()).into(imatgeProducte)
-        nomService.text = productData?.name.toString()
+        nomService.text = serviceData?.name.toString()
         contingutDescripcioService.text = serviceData?.description.toString()
         contingutEstatService.text = serviceData?.state.toString()
         contingutTipusService.text = serviceData?.type.toString()
@@ -125,7 +125,7 @@ class ConsultarServiceFragment : Fragment() {
         }
     }*/
 
-    private fun typeName(type: String): String? {
+    /*private fun typeName(type: String): String? {
         when (type) {
             "G" -> return "Canguratge"
             "T" -> return "Transport"
@@ -135,7 +135,7 @@ class ConsultarServiceFragment : Fragment() {
             "A" -> return "Altres"
             else -> return null
         }
-    }
+    }*/
 
     /** Function setContent
      *
@@ -144,7 +144,7 @@ class ConsultarServiceFragment : Fragment() {
      *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello i Bayarri
      */
     fun setContent(){
-        imatgeService.setImageResource(R.drawable.fotopae)
+        //imatgeService.setImageResource(R.drawable.fotopae)
         nomService.text = "Llibre matemàtiques"
         contingutDescripcioService.text = "LLibre mates de 4t d'ESO"
         contingutUbicacioService.text = "Barcelona"
