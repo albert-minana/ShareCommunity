@@ -12,8 +12,10 @@ import kotlinx.coroutines.launch
 class ServiceViewModel : ViewModel() {
     private val _service = MutableLiveData<Resource<Service>>()
     private val _services = MutableLiveData<Resource<ArrayList<Service>>>()
+    private val _idservei = MutableLiveData<Resource<String>>()
     val service: LiveData<Resource<Service>> = _service
     var services: LiveData<Resource<ArrayList<Service>>>? = _services
+    var idservei: LiveData<Resource<String>> = _idservei
 
     fun createService(service: Service) {
         viewModelScope.launch {
@@ -32,4 +34,17 @@ class ServiceViewModel : ViewModel() {
             _services.value = FirebaseServiceService.getAvailableServices()
         }
     }
+
+    fun deleteService(id: String, userEmail: String) {
+        viewModelScope.launch {
+            _idservei.value = FirebaseServiceService.deleteAvailableService(id, userEmail)
+        }
+    }
+
+    fun updateService(service: Service) {
+        viewModelScope.launch {
+            _service.value = FirebaseServiceService.updateService(service)
+        }
+    }
+
 }

@@ -94,10 +94,14 @@
     <string name="Ubicacio">Ubicació</string>
     <string name="Provincia">Província</string>
     <string name="Botón_Foto">Insereix imatge</string>
-    <string name="User_Email">Email Usuari</string>
-    <string name="Publication_Date">Data Publicació</string>
+    <string name="EmailUsuari">Email Usuari</string>
+    <string name="DataPublicacio">Data Publicació</string>
     <string name="Data_Inici">Data Inici</string>
     <string name="Data_Fi">Data Fi</string>
-    <string name="Estat">Estat</string>
+    <string name="estat">Estat</string>
+    <string name="tipus">Tipus</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="finalitzar">Finalitzar</string>
 
 </resources>
