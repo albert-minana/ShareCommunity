@@ -375,7 +375,7 @@ class ConsultarProducteFragment : Fragment() {
 
     private fun setUpShareButton(){
         botoCompartir.setOnClickListener {
-            val missatge = "L'aplicació ShareCommunity és un espai d'intercanvi de productes i serveis. Un membre de la comunitat ha compratit el producte " + producte!!.name+", potser t'interessa!"
+            val missatge = "L'aplicació ShareCommunity és un espai d'intercanvi de productes i serveis. Un membre de la comunitat ha compartit el producte " + producte!!.name+", potser t'interessa!"
             val intent = Intent()
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_TEXT, missatge)
