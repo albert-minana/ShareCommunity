@@ -18,298 +18,305 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/botoCompartirService"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/text_compartir"
-                    android:textAlignment="center"
-                    app:icon="@drawable/ic_share" />
-
-                <TextView
-                    android:id="@+id/nomService"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/Nom"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="26sp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutDescripcioService"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_descripció"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditTextDescripcioService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableLeft="@drawable/ic_description"
-                        android:drawablePadding="10dp"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:inputType="textPersonName"
-                        android:text="@string/text_descripció" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutUbicacioService"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/Ubicacio"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditTextUbicacioService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableLeft="@drawable/ic_location"
-                        android:drawablePadding="10dp"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:inputType="textPersonName"
-                        android:text="@string/Ubicacio" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutEstatService"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/estat"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditTextEstatService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableLeft="@drawable/ic_state"
-                        android:drawablePadding="10dp"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:inputType="textPersonName"
-                        android:text="@string/estat" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutDataService"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/DataPublicacio"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditTextDataService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableLeft="@drawable/ic_profile_birthday"
-                        android:drawablePadding="10dp"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:inputType="textPersonName"
-                        android:text="@string/DataPublicacio" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutEmailService"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/EmailUsuari"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditTextEmailService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableLeft="@drawable/ic_profile_email"
-                        android:drawablePadding="10dp"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:inputType="textPersonName"
-                        android:text="@string/EmailUsuari" />
-                </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutDataIniService"
-                        android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/botoCompartirService"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:errorEnabled="true"
-                        android:layout_weight="1">
-
-                        <EditText
-                            android:id="@+id/TextInputEditTextDataIniService"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:background="#00FFFFFF"
-                            android:datePickerMode="calendar"
-                            android:ems="10"
-                            android:hint="@string/Data_Inici"
-                            android:inputType="date"
-                            android:maxLines="1"
-                            android:clickable="true"
-                            android:focusable="false"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutDataFiService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        app:errorEnabled="true">
-
-                        <EditText
-                            android:id="@+id/TextInputEditTextDataFiService"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#00FFFFFF"
-                            android:datePickerMode="calendar"
-                            android:ems="10"
-                            android:hint="@string/Data_Fi"
-                            android:inputType="date"
-                            android:maxLines="1"
-                            android:clickable="true"
-                            android:focusable="false"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="50dp"
-                    android:text="@string/tipus"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="0dp">
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/text_compartir"
+                        android:textAlignment="center"
+                        app:icon="@drawable/ic_share" />
 
                     <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:drawableTop="@drawable/ic_profile_categories"
-                        android:paddingStart="8dp"
-                        android:paddingTop="12dp" />
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutTipusService"
+                        android:id="@+id/nomService"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-22dp"
-                        android:layout_weight="1"
-                        android:paddingLeft="17dp"
-                        android:paddingRight="17dp"
-                        app:helperTextEnabled="false"
-                        app:hintAnimationEnabled="false"
-                        app:hintEnabled="false"
-                        app:placeholderText=" ">
+                        android:clickable="false"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/Nom"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="26sp" />
 
-                        <com.whygraphics.multilineradiogroup.MultiLineRadioGroup
-                            android:id="@+id/main_activity_multi_line_radio_group_edit"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutDescripcioService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/text_descripció"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/TextInputEditTextDescripcioService"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:default_button="button_2"
-                            app:max_in_row="2"
-                            app:radio_buttons="@array/radio_buttons"
-                            android:textColor="@color/radiobuttonstate"
-                            android:textSize="16sp"
+                            android:background="#00FFFFFF"
                             android:clickable="false"
-                            android:focusable="false"/>
-
+                            android:cursorVisible="false"
+                            android:drawableLeft="@drawable/ic_description"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="textPersonName"
+                            android:text="@string/text_descripció" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutUbicacioService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Ubicacio"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/TextInputEditTextUbicacioService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:drawableLeft="@drawable/ic_location"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="textPersonName"
+                            android:text="@string/Ubicacio" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutEstatService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/estat"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/TextInputEditTextEstatService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:drawableLeft="@drawable/ic_state"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="textPersonName"
+                            android:text="@string/estat" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutDataService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/DataPublicacio"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/TextInputEditTextDataService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:drawableLeft="@drawable/ic_profile_birthday"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="textPersonName"
+                            android:text="@string/DataPublicacio" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutEmailService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/EmailUsuari"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/TextInputEditTextEmailService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:drawableLeft="@drawable/ic_profile_email"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="textPersonName"
+                            android:text="@string/EmailUsuari" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayoutDataIniService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorEnabled="true"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/TextInputEditTextDataIniService"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:background="#00FFFFFF"
+                                android:datePickerMode="calendar"
+                                android:ems="10"
+                                android:hint="@string/Data_Inici"
+                                android:inputType="date"
+                                android:maxLines="1"
+                                android:clickable="true"
+                                android:focusable="false"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayoutDataFiService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            app:errorEnabled="true">
+
+                            <EditText
+                                android:id="@+id/TextInputEditTextDataFiService"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00FFFFFF"
+                                android:datePickerMode="calendar"
+                                android:ems="10"
+                                android:hint="@string/Data_Fi"
+                                android:inputType="date"
+                                android:maxLines="1"
+                                android:clickable="true"
+                                android:focusable="false"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="50dp"
+                        android:text="@string/tipus"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_profile_categories"
+                            android:paddingStart="8dp"
+                            android:paddingTop="12dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayoutTipusService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-22dp"
+                            android:layout_weight="1"
+                            android:paddingLeft="17dp"
+                            android:paddingRight="17dp"
+                            app:helperTextEnabled="false"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false"
+                            app:placeholderText=" ">
+
+                            <com.whygraphics.multilineradiogroup.MultiLineRadioGroup
+                                android:id="@+id/main_activity_multi_line_radio_group_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:textColor="@color/radiobuttonstate"
+                                android:textSize="16sp"
+                                app:default_button="button_2"
+                                app:max_in_row="2"
+                                app:radio_buttons="@array/radio_buttons" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/LinearLayoutServiceButtons"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_weight="3"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <Button
+                                android:id="@+id/eliminarService"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:text="@string/eliminar"
+                                app:icon="@drawable/ic_cancel"
+                                app:iconGravity="top" />
+
+                            <Button
+                                android:id="@+id/editarService"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:text="@string/editar"
+                                app:icon="@drawable/ic_edit"
+                                app:iconGravity="top" />
+
+                            <Button
+                                android:id="@+id/finalitzarService"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:text="@string/finalitzar"
+                                app:icon="@drawable/ic_confirmed"
+                                app:iconGravity="top" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
+            </ScrollView>
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/LinearLayoutServiceButtons"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_weight="3"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <Button
-                        android:id="@+id/eliminarService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:text="@string/eliminar"
-                        app:icon="@drawable/ic_cancel"
-                        app:iconGravity="top" />
-
-                    <Button
-                        android:id="@+id/editarService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:text="@string/editar"
-                        app:icon="@drawable/ic_edit"
-                        app:iconGravity="top" />
-
-                    <Button
-                        android:id="@+id/finalitzarService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:text="@string/finalitzar"
-                        app:icon="@drawable/ic_confirmed"
-                        app:iconGravity="top" />
-                </LinearLayout>
-
-            </LinearLayout>
 
         </RelativeLayout>
 
