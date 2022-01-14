@@ -25,7 +25,7 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold|italic"
-            app:icon="@drawable/ic_menu_gallery"
+            app:icon="@drawable/ic_menu_products"
             app:iconGravity="start"
             app:iconSize="50dp" />
 
@@ -40,7 +40,7 @@
             android:text="@string/serveis"
             android:textSize="30sp"
             android:textStyle="bold|italic"
-            app:icon="@drawable/ic_menu_gallery"
+            app:icon="@drawable/ic_menu_service"
             app:iconSize="50dp" />
 
         <Space
@@ -54,7 +54,7 @@
             android:text="@string/el_meu_espai"
             android:textSize="30sp"
             android:textStyle="bold|italic"
-            app:icon="@drawable/ic_menu_gallery"
+            app:icon="@drawable/ic_menu_profile"
             app:iconSize="50dp" />
 
         <TextView

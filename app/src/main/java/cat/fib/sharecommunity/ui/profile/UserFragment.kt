@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.MainActivity
 import cat.fib.sharecommunity.R
+import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.dataclasses.UserProfile
 import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
 import cat.fib.sharecommunity.viewmodels.UserProfileViewModel
@@ -33,13 +34,13 @@ import java.time.format.DateTimeFormatter
  */
 @AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
-/*
+
     private val viewModel by viewModels<UserProfileViewModel>()
 
     private var emailUsuari: String? = null     // Identificador de l'usuari
     private var proveidor: String? = null               // Proveïdor de l'usuari
     private var usuari: UserProfile? = null                      // Model de l'usuari
-*/
+
     lateinit var nom: TextView
     lateinit var cognoms: TextView
     lateinit var correu: TextView
@@ -52,7 +53,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     lateinit var botoActualitzarPerfil: Button
     lateinit var layaoutContrasenya: TextInputLayout
 
-/*
+
     /** Function onCreate
      *
      *  Funció encarregada de crear el fragment
@@ -99,15 +100,15 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
         botoActualitzarPerfil = v.findViewById(R.id.ActualitzarUsuariButton)
 
-        identificadorUsuari?.let {
-            viewModel.getUserByEmail(it)
+        emailUsuari?.let {
+            viewModel.getUserProfile(it)
         }
 
-        viewModel.user.observe(viewLifecycleOwner, Observer {
-            if (it.status == Status.SUCCESS) {
-                user = it.data
+        viewModel.userProfile.observe(viewLifecycleOwner, Observer {
+            if (it.status == Resource.Status.SUCCESS) {
+                usuari = it.data
                 setUpUser(it.data)
-            } else if (it.status == Status.ERROR) Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
+            } else if (it.status == Resource.Status.ERROR) Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
         })
 
         setupUpdateProfileButton()
@@ -122,7 +123,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
      *  @param userData
      *  @author  Albert Miñana Montecino, Adrià Espinola Garcia, Daniel Cárdenas Rafael, Oriol Prat Marín
      */
-    fun setUpUser(userData: User?) {
+    fun setUpUser(userData: UserProfile?) {
         nom.text = userData?.firstname.toString()
         cognoms.text = userData?.lastname.toString()
         correu.text = userData?.email.toString()
@@ -178,29 +179,29 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             val validateBirthday = validateBirthday()
             val validateGender = validateGender()
             if (validateName && validateLastName && validateEmail && validatePassword && validatePhone && validateBirthday && validateGender) {
-                user!!.firstname = nom.text.toString()
-                user!!.lastname = cognoms.text.toString()
+                usuari!!.firstname = nom.text.toString()
+                usuari!!.lastname = cognoms.text.toString()
                 if (proveidor == "Local") {
-                    user!!.email = correu.text.toString()
-                    user!!.password = contrasenya.text.toString()
+                    usuari!!.email = correu.text.toString()
+                    usuari!!.password = contrasenya.text.toString()
                 }
-                user!!.phone = telefon.text.toString()
-                user!!.birthday = LocalDate.parse(data.text.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
-                user!!.gender = when {
+                usuari!!.phone = telefon.text.toString()
+                usuari!!.birthday = LocalDate.parse(data.text.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
+                usuari!!.gender = when {
                     sexeHome.isChecked -> "M"
                     sexeDona.isChecked -> "W"
                     else -> "X"
                 }
-                viewModel.updateUser(user!!)
-                viewModel.user.observe(viewLifecycleOwner, Observer {
-                    if (it.status == Status.SUCCESS) {
+                viewModel.updateUserProfile(usuari!!)
+                viewModel.userProfile.observe(viewLifecycleOwner, Observer {
+                    if (it.status == Resource.Status.SUCCESS) {
                         setUpUser(it.data)
                         val prefs = requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                         prefs.putString("name", it.data?.firstname.toString() + " " + it.data?.lastname.toString())
                         prefs.putString("email", it.data?.email.toString())
                         prefs.apply()
                         (activity as MainActivity).setNameAndEmail()
-                    } else if (it.status == Status.ERROR) {
+                    } else if (it.status == Resource.Status.ERROR) {
                         showErrorField(2)
                         /*
                         if (it.status.toString().contentEquals("username")){
@@ -216,9 +217,6 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             }
         }
     }
-
-*/
-
 
     /** Function validateName
      *

@@ -1,30 +1,30 @@
 package cat.fib.sharecommunity.ui
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.FOCUSABLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.fib.sharecommunity.MainActivity
 import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.dataclasses.Service
 import cat.fib.sharecommunity.dataclasses.Resource
+import cat.fib.sharecommunity.dataclasses.Service
+import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
 import cat.fib.sharecommunity.viewmodels.ServiceViewModel
-import com.squareup.picasso.Picasso
+import com.whygraphics.multilineradiogroup.MultiLineRadioGroup
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_crear_service.*
 import kotlinx.android.synthetic.main.fragment_consultar_service.*
 
-import dagger.hilt.android.AndroidEntryPoint
 
 // Paràmetres d'inicialització del Fragment
 private const val EXTRA_MESSAGE_1 = "cat.fib.sharecommunity.MESSAGE1"
@@ -45,6 +45,7 @@ class ConsultarServiceFragment : Fragment() {
     private var idService: String? = null  // ID del servei
     private var userEmailService: String? = null  // userEmail del servei
     private var servei: Service? = null
+    private var tipus: String? = null
 
     lateinit var imatgeService: ImageView              // ImageView amb la imatge del servei
     lateinit var nomService: TextView                  // TextView amb el nom del servei
@@ -52,22 +53,18 @@ class ConsultarServiceFragment : Fragment() {
     lateinit var contingutUbicacioService: TextView    // TextView amb la ubicació del servei
     lateinit var contingutEstatService: TextView       // TextView amb l'estat del servei
     lateinit var contingutTipusService: TextView       // TextView amb el tipus del servei
-    lateinit var contingutDataIniService: TextView       // TextView amb la data d'inici del servei
-    lateinit var contingutDataFiService: TextView       // TextView amb la data final del servei
     lateinit var contingutDataPublicacio: TextView      // TextView amb la data de publicació del servei
     lateinit var contingutEmailUsuari: TextView         // TextView amb l'email de l'usuari del servei
-    lateinit var contingutTipusCanguratgeService: RadioButton
-    lateinit var contingutTipusTransportService: RadioButton
-    lateinit var contingutTipusClassesService: RadioButton
-    lateinit var contingutTipusBancService: RadioButton
-    lateinit var contingutTipusCompartirService: RadioButton
-    lateinit var contingutTipusAltreService: RadioButton
+    lateinit var contingutDataInici: TextView
+    lateinit var contingutDataFi: TextView
 
     lateinit var botoCompartir: Button                  // Button per compartir service
     lateinit var buttons: LinearLayout                  // Buttons
     lateinit var botoEliminar: Button                   // Button per eliminar service
     lateinit var botoEditar: Button                     // Button per editar service
     lateinit var botoFinalitzar: Button                 // Button per finalitzar service
+    var mMultiLineRadioGroup: MultiLineRadioGroup? = null
+
 
     /** Function onCreate
      *
@@ -91,41 +88,53 @@ class ConsultarServiceFragment : Fragment() {
      *  @param savedInstanceState
      *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello i Bayarri
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_consultar_service, container, false)
 
-        //imatgeService = view.findViewById(R.id.imatgeservice)
         nomService = view.findViewById(R.id.nomService)
         contingutDescripcioService = view.findViewById(R.id.TextInputEditTextDescripcioService)
         contingutUbicacioService = view.findViewById(R.id.TextInputEditTextUbicacioService)
         contingutEstatService = view.findViewById(R.id.TextInputEditTextEstatService)
-        contingutTipusCanguratgeService = view.findViewById(R.id.Tipus_Canguratge)
-        contingutTipusTransportService = view.findViewById(R.id.Tipus_Transport)
-        contingutTipusClassesService = view.findViewById(R.id.Tipus_Classes)
-        contingutTipusBancService = view.findViewById(R.id.Tipus_Banc)
-        contingutTipusCompartirService = view.findViewById(R.id.Tipus_Compartir)
-        contingutTipusAltreService = view.findViewById(R.id.Tipus_Altre)
-        contingutDataIniService = view.findViewById(R.id.TextInputEditTextDataIniService)
-        contingutDataFiService = view.findViewById(R.id.TextInputEditTextDataFiService)
         contingutDataPublicacio = view.findViewById(R.id.TextInputEditTextDataService)
         contingutEmailUsuari = view.findViewById(R.id.TextInputEditTextEmailService)
+        contingutDataInici = view.findViewById(R.id.TextInputEditTextDataIniService)
+        contingutDataFi = view.findViewById(R.id.TextInputEditTextDataFiService)
+
+        botoCompartir = view.findViewById(R.id.botoCompartirService)
+        buttons = view.findViewById(R.id.LinearLayoutServiceButtons)
+        botoEliminar = view.findViewById(R.id.eliminarService)
+        botoEditar = view.findViewById(R.id.editarService)
+        botoFinalitzar = view.findViewById(R.id.finalitzarService)
+        mMultiLineRadioGroup = view.findViewById(R.id.main_activity_multi_line_radio_group_edit)
+        mMultiLineRadioGroup?.setOnCheckedChangeListener(MultiLineRadioGroup.OnCheckedChangeListener { group, button ->
+            tipus = button.text.toString()
+        })
 
         idService?.let {
-            viewModel.getService(userEmailService!!, it)
+            viewModel.getService(it, userEmailService!!)
         }
 
         viewModel.service?.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
                 servei = it.data
+                tipus = it.data!!.type
                 setContent(it.data)
-                val prefs = this.requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+                val prefs = this.requireActivity().getSharedPreferences(
+                    getString(R.string.prefs_file),
+                    Context.MODE_PRIVATE
+                )
                 val userEmail = prefs.getString("email", null)
                 if (servei!!.userEmail == userEmail && servei!!.state == "Disponible") convertToEditarServiceActivity()
-            }
-            else if (it.status == Resource.Status.ERROR)
+            } else if (it.status == Resource.Status.ERROR)
                 Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
         })
+
+        setUpShareButton()
 
         return view
     }
@@ -139,29 +148,15 @@ class ConsultarServiceFragment : Fragment() {
         contingutUbicacioService.isCursorVisible = true
         contingutUbicacioService.isClickable = true
 
-        contingutTipusCanguratgeService.isFocusableInTouchMode = true
-        contingutTipusCanguratgeService.isCursorVisible = true
-        contingutTipusCanguratgeService.isClickable = true
+        mMultiLineRadioGroup?.isFocusableInTouchMode = true
+        mMultiLineRadioGroup?.isClickable = true
 
-        contingutTipusTransportService.isFocusableInTouchMode = true
-        contingutTipusTransportService.isCursorVisible = true
-        contingutTipusTransportService.isClickable = true
-
-        contingutTipusClassesService.isFocusableInTouchMode = true
-        contingutTipusClassesService.isCursorVisible = true
-        contingutTipusClassesService.isClickable = true
-
-        contingutTipusBancService.isFocusableInTouchMode = true
-        contingutTipusBancService.isCursorVisible = true
-        contingutTipusBancService.isClickable = true
-
-        contingutTipusCompartirService.isFocusableInTouchMode = true
-        contingutTipusCompartirService.isCursorVisible = true
-        contingutTipusCompartirService.isClickable = true
-
-        contingutTipusAltreService.isFocusableInTouchMode = true
-        contingutTipusAltreService.isCursorVisible = true
-        contingutTipusAltreService.isClickable = true
+        contingutDataInici?.setOnClickListener {
+            showStartDatePickerDialog()
+        }
+        contingutDataFi?.setOnClickListener {
+            showEndDatePickerDialog()
+        }
 
         buttons.visibility = VISIBLE
 
@@ -201,8 +196,11 @@ class ConsultarServiceFragment : Fragment() {
             if (it.status == Resource.Status.SUCCESS) {
                 val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
-            }
-            else if (it.status == Resource.Status.ERROR) Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
+            } else if (it.status == Resource.Status.ERROR) Toast.makeText(
+                activity,
+                "ERROR!",
+                Toast.LENGTH_LONG
+            ).show()
         })
     }
 
@@ -220,26 +218,18 @@ class ConsultarServiceFragment : Fragment() {
             val descripcio = contingutDescripcioService?.text.toString()
             val ubicacio = contingutUbicacioService?.text.toString()
             var type: String
-            when {
-                contingutTipusCanguratgeService?.isChecked == true -> type = "Canguratge"
-                contingutTipusTransportService?.isChecked == true -> type = "Transport"
-                contingutTipusClassesService?.isChecked == true -> type = "Classes"
-                contingutTipusBancService?.isChecked == true -> type = "Banc"
-                contingutTipusCompartirService?.isChecked == true -> type = "Compartir"
-                else -> type = "Altre"
-            }
+
 
             servei!!.description = descripcio
             servei!!.ubication = ubicacio
-            servei!!.type = type
+            servei!!.type = tipus!!
 
             viewModel.updateService(servei!!)
             viewModel.service.observe(viewLifecycleOwner, Observer {
                 if (it.status == Resource.Status.SUCCESS) {
                     servei = it.data
                     setContent(servei)
-                }
-                else if (it.status == Resource.Status.ERROR) {
+                } else if (it.status == Resource.Status.ERROR) {
                     Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
                 }
             })
@@ -260,8 +250,7 @@ class ConsultarServiceFragment : Fragment() {
             if (it.status == Resource.Status.SUCCESS) {
                 val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
-            }
-            else if (it.status == Resource.Status.ERROR) {
+            } else if (it.status == Resource.Status.ERROR) {
                 Toast.makeText(activity, "ERROR!", Toast.LENGTH_LONG).show()
             }
         })
@@ -310,18 +299,16 @@ class ConsultarServiceFragment : Fragment() {
      *  Funció que comprova si el camp Tipus és correcte.
      *
      *  @return Retorna cert si és correcte, fals en cas contrari.
-     *  @author Daniel Cárdenas Rafael
+     *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello
      */
     private fun validateType(): Boolean {
-        val TypeNotChecked = (contingutTipusCanguratgeService?.isChecked == false && contingutTipusTransportService?.isChecked == false && contingutTipusClassesService?.isChecked == false && contingutTipusBancService?.isChecked == false && contingutTipusCompartirService?.isChecked == false && contingutTipusAltreService?.isChecked == false)
+        val TypeNotChecked = (tipus == null)
         if (TypeNotChecked) {
             textInputLayoutTipusService?.setError("El camp no està seleccionat")
-            contingutTipusAltreService?.setError("El camp no està seleccionat")
             return false
         }
         else {
             textInputLayoutTipusService?.setError(null)
-            contingutTipusAltreService?.setError(null)
             return true
         }
     }
@@ -336,7 +323,9 @@ class ConsultarServiceFragment : Fragment() {
         val builder = AlertDialog.Builder(requireActivity())
         builder.setTitle("Confirmació")
         builder.setMessage("Estàs segur que vols eliminar el teu service?")
-        builder.setPositiveButton("Acceptar", DialogInterface.OnClickListener { dialog, which -> deleteService() })
+        builder.setPositiveButton(
+            "Acceptar",
+            DialogInterface.OnClickListener { dialog, which -> deleteService() })
         builder.setNegativeButton("Cancel·lar", null)
         val dialog: AlertDialog = builder.create()
         dialog.create()
@@ -354,15 +343,10 @@ class ConsultarServiceFragment : Fragment() {
     fun setContent(serviceData: Service?){
         nomService.text = serviceData?.name.toString()
         contingutDescripcioService.text = serviceData?.description.toString()
+        contingutUbicacioService.text = serviceData?.ubication.toString()
         contingutEstatService.text = serviceData?.state.toString()
-        when (serviceData?.type) {
-            "Canguratge" -> contingutTipusCanguratgeService.isChecked = true
-            "Transport" -> contingutTipusTransportService.isChecked = true
-            "Classes" -> contingutTipusClassesService.isChecked = true
-            "Banc" -> contingutTipusBancService.isChecked = true
-            "Compartir" -> contingutTipusCompartirService.isChecked = true
-            else -> contingutTipusAltreService.isChecked = true
-        }
+        contingutDataInici.text = serviceData?.data_ini.toString()
+        contingutDataFi.text = serviceData?.data_fi.toString()
         contingutDataPublicacio.text = serviceData?.publishDate.toString()
         contingutEmailUsuari.text = serviceData?.userEmail.toString()
     }
@@ -381,8 +365,6 @@ class ConsultarServiceFragment : Fragment() {
         contingutDescripcioService.text = "LLibre mates de 4t d'ESO"
         contingutUbicacioService.text = "Barcelona"
         contingutEstatService.text = "Disponible"
-        contingutDataIniService.text = "13:00"
-        contingutDataFiService.text = "15:00"
     }
 
     private fun setUpShareButton() {
@@ -397,5 +379,47 @@ class ConsultarServiceFragment : Fragment() {
             startActivity(chooseIntent)
         }
     }
+
+    /** Funció showStartDatePickerDialog
+     *
+     *  Funció que selecciona la data marcada en el fragment del calendari i l'assigna a la data de d'inici del servei.
+     *
+     *  @author Daniel Cárdenas.
+     */
+    private fun showStartDatePickerDialog() {
+        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dayStr = day.twoDigits()
+            val monthStr = (month + 1).twoDigits() // +1 because January is zero
+            val selectedDate = "$dayStr/$monthStr/$year"
+            contingutDataInici?.setText(selectedDate)
+        })
+        newFragment.show(childFragmentManager, "datePicker")
+    }
+
+
+    /** Funció showEndDatePickerDialog
+     *
+     *  Funció que selecciona la data marcada en el fragment del calendari i l'assigna a la data final del servei.
+     *
+     *  @author Daniel Cárdenas.
+     */
+    private fun showEndDatePickerDialog() {
+        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dayStr = day.twoDigits()
+            val monthStr = (month + 1).twoDigits() // +1 because January is zero
+            val selectedDate = "$dayStr/$monthStr/$year"
+            contingutDataFi?.setText(selectedDate)
+        })
+
+        newFragment.show(childFragmentManager, "datePicker")
+    }
+
+    /** Funció twoDigits
+     *
+     *  Funció que afegeix el dígit '0' davant d'un nombre menor que 10.
+     *
+     *  @author Daniel Cárdenas.
+     */
+    fun Int.twoDigits() = if (this <= 9) "0$this" else this.toString()
 
 }

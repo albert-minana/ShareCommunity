@@ -20,14 +20,8 @@
             android:title="@string/serveis" />
         <item
             android:id="@+id/nav_personalspace"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/el_meu_espai" />
-
-
-        <item
-            android:id="@+id/nav_profile"
             android:icon="@drawable/ic_menu_profile"
-            android:title="@string/menu_profile" />
+            android:title="@string/el_meu_espai" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"

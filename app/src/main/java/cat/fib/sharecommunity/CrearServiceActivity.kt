@@ -3,14 +3,14 @@ package cat.fib.sharecommunity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import cat.fib.sharecommunity.dataclasses.Service
 import cat.fib.sharecommunity.dataclasses.Resource
+import cat.fib.sharecommunity.dataclasses.Service
 import cat.fib.sharecommunity.ui.dialog.DatePickerFragment
 import cat.fib.sharecommunity.viewmodels.ServiceViewModel
 import com.whygraphics.multilineradiogroup.MultiLineRadioGroup
@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_crear_perfil.textInputLayoutNom
 import kotlinx.android.synthetic.main.activity_crear_service.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /** Classe CrearService
  *
@@ -33,12 +34,7 @@ class CrearServiceActivity : AppCompatActivity() {
     var Nom: EditText? = null
     var Descripcio: EditText? = null
     var Ubicacio: EditText? = null
-    var Tipus_Canguratge: RadioButton? = null
-    var Tipus_Transport: RadioButton? = null
-    var Tipus_Classes: RadioButton? = null
-    var Tipus_Banc: RadioButton? = null
-    var Tipus_Compartir: RadioButton? = null
-    var Tipus_Altre: RadioButton? = null
+    var tipus: String? = null
     var Data_Inici: EditText? = null
     var Data_Fi: EditText? = null
 
@@ -62,12 +58,6 @@ class CrearServiceActivity : AppCompatActivity() {
         Nom = findViewById(R.id.Nom)
         Descripcio = findViewById(R.id.Descripcio)
         Ubicacio = findViewById(R.id.Ubicacio)
-        Tipus_Canguratge = findViewById(R.id.Tipus_Canguratge)
-        Tipus_Transport = findViewById(R.id.Tipus_Transport)
-        Tipus_Classes = findViewById(R.id.Tipus_Classes)
-        Tipus_Banc = findViewById(R.id.Tipus_Banc)
-        Tipus_Compartir = findViewById(R.id.Tipus_Compartir)
-        Tipus_Altre = findViewById(R.id.Tipus_Altre)
         Data_Inici = findViewById(R.id.DataInici)
         Data_Inici?.setOnClickListener {
             showStartDatePickerDialog()
@@ -78,8 +68,14 @@ class CrearServiceActivity : AppCompatActivity() {
         }
 
         setupSendButton()
-        mMultiLineRadioGroup = findViewById(R.id.main_activity_multi_line_radio_group);
+        mMultiLineRadioGroup = findViewById(R.id.main_activity_multi_line_radio_group)
+
+        mMultiLineRadioGroup?.setOnCheckedChangeListener(MultiLineRadioGroup.OnCheckedChangeListener { group, button ->
+            tipus = button.text.toString()
+        })
+
     }
+
 
     /** Function setupSendButton
      *
@@ -99,29 +95,32 @@ class CrearServiceActivity : AppCompatActivity() {
                 val name = Nom?.text.toString()
                 val descripcio = Descripcio?.text.toString()
                 val ubicacio = Ubicacio?.text.toString()
-                var type: String
                 var data_ini = Data_Inici?.text.toString()
                 var data_fi = Data_Fi?.text.toString()
-                when {
-                    Tipus_Canguratge?.isChecked == true -> type = "Canguratge"
-                    Tipus_Transport?.isChecked == true -> type = "Transport"
-                    Tipus_Classes?.isChecked == true -> type = "Classes"
-                    Tipus_Banc?.isChecked == true -> type = "Banc"
-                    Tipus_Compartir?.isChecked == true -> type = "Compartir"
-                    else -> type = "Altre"
-                }
+
                 val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
                 val publishDate = sdf.format(Date())
 
-                val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences(
+                    getString(R.string.prefs_file),
+                    Context.MODE_PRIVATE
+                )
                 val userEmail = prefs.getString("email", null)
-                val service = Service(name, descripcio, ubicacio, type, data_ini, data_fi, publishDate, userEmail!!)
+                val service = Service(
+                    name,
+                    descripcio,
+                    ubicacio,
+                    tipus!!,
+                    data_ini,
+                    data_fi,
+                    publishDate,
+                    userEmail!!
+                )
                 viewModel.createService(service)
                 viewModel.service.observe(this, Observer {
                     if (it.status == Resource.Status.SUCCESS) {
                         showHome()
-                    }
-                    else if (it.status == Resource.Status.ERROR) {
+                    } else if (it.status == Resource.Status.ERROR) {
                         Toast.makeText(this, "ERROR!", Toast.LENGTH_LONG).show()
                     }
 
@@ -196,15 +195,13 @@ class CrearServiceActivity : AppCompatActivity() {
      *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello
      */
     private fun validateType(): Boolean {
-        val TypeNotChecked = (Tipus_Canguratge?.isChecked == false && Tipus_Transport?.isChecked == false && Tipus_Classes?.isChecked == false &&  Tipus_Banc?.isChecked == false &&  Tipus_Compartir?.isChecked == false && Tipus_Altre?.isChecked == false)
+        val TypeNotChecked = (tipus == null)
         if (TypeNotChecked) {
             textInputLayoutType?.setError("El camp no està seleccionat")
-            Tipus_Altre?.setError("El camp no està seleccionat")
             return false
         }
         else {
             textInputLayoutType?.setError(null)
-            Tipus_Altre?.setError(null)
             return true
         }
     }
@@ -259,7 +256,7 @@ class CrearServiceActivity : AppCompatActivity() {
     }
 
         private fun show(message: String) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     /** Function showHome

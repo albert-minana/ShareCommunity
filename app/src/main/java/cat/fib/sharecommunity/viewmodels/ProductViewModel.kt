@@ -35,6 +35,13 @@ class ProductViewModel : ViewModel() {
         }
     }
 
+    fun getUserProducts(userEmail: String) {
+        viewModelScope.launch {
+            _products.value = FirebaseProductService.getUserProducts(userEmail)
+        }
+    }
+
+
     fun deleteProduct(id: String, userEmail: String) {
         viewModelScope.launch {
             _idproduct.value = FirebaseProductService.deleteProduct(id, userEmail)

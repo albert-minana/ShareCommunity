@@ -114,12 +114,11 @@ class CercarFiltrarServiceFragment : Fragment(), RecyclerViewNomAdapter.OnItemCl
      *  @author Daniel Cárdenas Rafael & Xavier Sancho-Tello Bayarri
      */
     override fun onItemClick(position: Int) {
-
         val idService = llistatServices!![position].id
-        val userEmailProduct = llistatServices!![position].userEmail
+        val userEmailService = llistatServices!![position].userEmail
         val intent = Intent(activity, ConsultarServiceActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE_1, idService)
-            putExtra(EXTRA_MESSAGE_2, userEmailProduct)
+            putExtra(EXTRA_MESSAGE_2, userEmailService)
         }
         startActivity(intent)
 

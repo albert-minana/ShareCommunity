@@ -16,16 +16,11 @@
         android:label="@string/productes" />
     <fragment
         android:id="@+id/nav_services"
-        android:name="cat.fib.sharecommunity.ui.CercarFiltrarProducteFragment"
+        android:name="cat.fib.sharecommunity.ui.CercarFiltrarServiceFragment"
         android:label="@string/serveis" />
     <fragment
         android:id="@+id/nav_personalspace"
         android:name="cat.fib.sharecommunity.ui.profile.ProfileFragment"
-        android:label="@string/comunitat" />
-    <fragment
-        android:id="@+id/nav_profile"
-        android:name="cat.fib.sharecommunity.ui.profile.ProfileFragment"
-        android:label="@string/menu_profile" />
-
+        android:label="@string/el_meu_espai" />
 
 </navigation>

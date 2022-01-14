@@ -37,7 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00FFFFFF"
-                        android:drawableLeft="@drawable/ic_menu_gallery"
+                        android:drawableLeft="@drawable/ic_profile_objectives"
                         android:drawablePadding="10dp"
                         android:drawableTint="@android:color/tertiary_text_dark"
                         android:enabled="false"
@@ -48,7 +48,7 @@
                     android:id="@+id/textInputLayoutCategoria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="CategoriesInterès"
+                    android:hint="Categories interès"
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -64,44 +64,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutObjectiu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Objectiu"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/Objectiu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:drawableLeft="@drawable/ic_profile_objectives"
-                        android:drawablePadding="10dp"
-                        android:drawableTint="@android:color/tertiary_text_dark"
-                        android:enabled="false"
-                        android:text="Objectiu" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutNumRutines"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="NumRutines"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/NumRutines"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:drawableLeft="@drawable/ic_menu_gallery"
-                        android:drawablePadding="10dp"
-                        android:drawableTint="@android:color/tertiary_text_dark"
-                        android:enabled="false"
-                        android:text="NumRutines" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutPunts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,30 +75,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00FFFFFF"
-                        android:drawableLeft="@drawable/ic_menu_gallery"
+                        android:drawableLeft="@drawable/ic_confirmed"
                         android:drawablePadding="10dp"
                         android:drawableTint="@android:color/tertiary_text_dark"
                         android:enabled="false"
                         android:text="Punts" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutAssoliments"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Assoliments"
-                    app:errorEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/Assoliments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:drawableLeft="@drawable/ic_menu_gallery"
-                        android:drawablePadding="10dp"
-                        android:drawableTint="@android:color/tertiary_text_dark"
-                        android:enabled="false"
-                        android:text="Assoliments" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 

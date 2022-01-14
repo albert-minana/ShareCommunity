@@ -16,11 +16,17 @@ class UserProfileViewModel : ViewModel() {
     val idUserProfile: LiveData<Resource<String>> = _idUserProfile
     //lateinit var userProfile : MutableLiveData<Resource<UserProfile>>
 
-   /* fun getUserProfile(email: String) {
+   fun getUserProfile(email: String) {
         viewModelScope.launch {
-            _userProfile.value = FirebaseUserProfileService.getUserProfileData(email)
+            _userProfile.value = FirebaseUserProfileService.getUserProfile(email)
         }
-    } */
+    }
+
+    fun updateUserProfile(user: UserProfile) {
+        viewModelScope.launch {
+            _userProfile.value = FirebaseUserProfileService.updateUserProfile(user)
+        }
+    }
 
     fun login(email: String, password: String) {
         viewModelScope.launch {

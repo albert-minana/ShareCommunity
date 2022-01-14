@@ -37,7 +37,7 @@ class ServiceViewModel : ViewModel() {
 
     fun deleteService(id: String, userEmail: String) {
         viewModelScope.launch {
-            _idservei.value = FirebaseServiceService.deleteAvailableService(id, userEmail)
+            _idservei.value = FirebaseServiceService.deleteService(id, userEmail)
         }
     }
 

@@ -11,15 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cat.fib.sharecommunity.R
-import cat.fib.sharecommunity.ui.CercarFiltrarClasseFragment
+import cat.fib.sharecommunity.ui.CercarFiltrarProducteFragment
+import cat.fib.sharecommunity.ui.CercarFiltrarServiceFragment
+import cat.fib.sharecommunity.ui.profile.ProfileFragment
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
-    lateinit var botoRutines: Button
-    lateinit var botoExercicis: Button
-    lateinit var botoClasses: Button
+    lateinit var botoProductes: Button
+    lateinit var botoServeis: Button
+    lateinit var botoMeuEspai: Button
     lateinit var boto: ClipData.Item
 
     override fun onCreateView(
@@ -31,13 +33,13 @@ class HomeFragment : Fragment() {
                 ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        botoRutines = root.findViewById(R.id.button11)
-        botoExercicis = root.findViewById(R.id.button12)
-        botoClasses = root.findViewById(R.id.button13)
+        botoProductes = root.findViewById(R.id.button11)
+        botoServeis = root.findViewById(R.id.button12)
+        botoMeuEspai = root.findViewById(R.id.button13)
 
-        setUpRutinesButton()
-        setUpExercicisButton()
-        setUpClassesButton()
+        setUpProductesButton()
+        setUpServeisButton()
+        setUpMeuEspaiButton()
 
 
         val textView: TextView = root.findViewById(R.id.text_home)
@@ -47,30 +49,30 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private fun setUpRutinesButton() {
-        botoRutines.setOnClickListener {
+    private fun setUpProductesButton() {
+        botoProductes.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.nav_host_fragment, CercarFiltrarClasseFragment())
+                replace(R.id.nav_host_fragment, CercarFiltrarProducteFragment())
                 addToBackStack(null)
                 commit()
             }
         }
     }
 
-    private fun setUpExercicisButton() {
-        botoExercicis.setOnClickListener {
+    private fun setUpServeisButton() {
+        botoServeis.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.nav_host_fragment, CercarFiltrarClasseFragment())
+                replace(R.id.nav_host_fragment, CercarFiltrarServiceFragment())
                 addToBackStack(null)
                 commit()
             }
         }
     }
 
-    private fun setUpClassesButton() {
-        botoClasses.setOnClickListener {
+    private fun setUpMeuEspaiButton() {
+        botoMeuEspai.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.nav_host_fragment, CercarFiltrarClasseFragment())
+                replace(R.id.nav_host_fragment, ProfileFragment())
                 addToBackStack(null)
                 commit()
             }

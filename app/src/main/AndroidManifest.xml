@@ -71,8 +71,6 @@
             android:theme="@style/Theme.ShareCommunity.NoActionBar"
             android:launchMode="singleTop" />
 
-        <activity android:name=".RealitzarRutinaPredefinidaActivity"></activity>
-
         <activity android:name=".ConsultarProducteActivity">
             android:parentActivityName=".MainActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->

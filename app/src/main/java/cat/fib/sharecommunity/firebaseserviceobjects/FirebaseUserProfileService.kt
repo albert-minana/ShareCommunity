@@ -1,6 +1,8 @@
 package cat.fib.sharecommunity.firebaseserviceobjects
 
 import android.util.Log
+import cat.fib.sharecommunity.dataclasses.Product
+import cat.fib.sharecommunity.dataclasses.Product.Companion.toProduct
 import cat.fib.sharecommunity.dataclasses.Resource
 import cat.fib.sharecommunity.dataclasses.UserProfile
 import cat.fib.sharecommunity.dataclasses.UserProfile.Companion.toUserProfile
@@ -12,18 +14,19 @@ import kotlinx.coroutines.tasks.await
 
 object FirebaseUserProfileService {
     private const val TAG = "FirebaseUserProfileService"
-    //esta función está mal
-    suspend fun getUserProfileData(email: String): UserProfile? {
+
+    suspend fun getUserProfile(email: String): Resource<UserProfile>? {
         val db = FirebaseFirestore.getInstance()
         return try {
-            db.collection("users")
+            val user = db.collection("users")
                 .document(email).get().await().toUserProfile()
+            return Resource.success(user)
         } catch (e: Exception) {
             Log.e(TAG, "Error getting user details", e)
             FirebaseCrashlytics.getInstance().log("Error getting user details")
             FirebaseCrashlytics.getInstance().setCustomKey("email", email)
             FirebaseCrashlytics.getInstance().recordException(e)
-            null
+            return Resource.error(e)
         }
     }
 
@@ -98,6 +101,23 @@ object FirebaseUserProfileService {
             Log.e(TAG, "Error deleting user: ", e)
             FirebaseCrashlytics.getInstance().log("Error deleting user")
             FirebaseCrashlytics.getInstance().setCustomKey("email", email)
+            FirebaseCrashlytics.getInstance().recordException(e)
+            return Resource.error(e)
+        }
+    }
+
+    suspend fun updateUserProfile(user: UserProfile): Resource<UserProfile>? {
+        val db = FirebaseFirestore.getInstance()
+        try {
+            db.collection("users").document(user.email)
+                .update("firstname", user.firstname, "lastname", user.lastname, "password", user.password, "phone", user.phone, "birthday", user.birthday, "gender", user.gender).await()
+            val updatedUser = db.collection("users").document(user.email).get().await().toUserProfile()
+            return Resource.success(updatedUser)
+        }
+        catch (e: Exception) {
+            Log.e(TAG, "Error updating user: ", e)
+            FirebaseCrashlytics.getInstance().log("Error updating user")
+            FirebaseCrashlytics.getInstance().setCustomKey("email", user.email)
             FirebaseCrashlytics.getInstance().recordException(e)
             return Resource.error(e)
         }
